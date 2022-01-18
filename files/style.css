@@ -76,3 +76,9 @@ nav.anim ul li a:hover:after {
 .btn-danger {
     background-color: #ff0000 !important;
 }
+
+.banner {
+  height: 75vh;
+  background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url("../Design/office-harmony-1207356.jpg");
+  background-size: cover;
+}
