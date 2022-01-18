@@ -21,11 +21,31 @@
                 <img class="logo" src="../Design/Logo.png" alt="">
                 <span class="logo-text text-uppercase">brainster</span>
             </a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <button onclick="openNav()" class="navbar-toggler" type="button">
                 <i class="fas fa-stream"></i>
             </button>
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav mx-auto">
+            <div id="mobileNav" class="overlay">
+                <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+                <div class="overlayContent">
+                    <ul class="navbar-nav ml-3">
+                        <li class="nav-item">
+                            <a class="nav-link text-white font-weight-bold" href="https://brainster.co/marketing/">Академија за маркетинг</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-white font-weight-bold" href="https://brainster.co/full-stack/">Академија за програмирање</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-white font-weight-bold" href="https://brainster.co/data-science/">Академија за data science</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-white font-weight-bold" href="https://brainster.co/graphic-design/">Академија за дизајн</a>
+                        </li>
+                    </ul>
+                    <a href="./clients.php" class="btn d-inline-block text-white btn-danger mt-3 ml-3">Вработи наш студент</a>
+                </div>
+              
+              </div>
+                <ul class="navbar-nav d-none d-lg-flex mx-auto">
                     <li class="nav-item">
                         <a class="nav-link text-dark font-weight-bold" href="https://brainster.co/marketing/">Академија за маркетинг</a>
                     </li>
@@ -39,8 +59,7 @@
                         <a class="nav-link text-dark font-weight-bold" href="https://brainster.co/graphic-design/">Академија за дизајн</a>
                     </li>
                 </ul>
-                <a href="./clients.php" class="btn btn-danger">Вработи наш студент</a>
-            </div>
+                <a href="./clients.php" class="btn btn-danger  d-none d-lg-flex">Вработи наш студент</a>
         </nav>
         </div>
         <div class="container-fluid p-0">
@@ -48,9 +67,473 @@
                 <h1 class="display-3 font-weight-bold text-center text-white">Brainster Labs</h1>
             </div>
         </div>
+        <div class="container-fluid p-0">
+            <div class="filters row justify-content-center text-white mx-0">
+                <div class="filter col-12 col-lg-4 border-left border-right border-bottom border-dark p-0 bg-gray marketing-checked">
+                    <label for="filter-marketing" class="h5 m-0 d-flex align-items-center p-4">
+                        <span class="mr-5">Проекти на студенти по академијата за маркетинг</span>
+                        <i class="fas fa-check-circle c-gray"></i>
+                        <input type="checkbox" id="filter-marketing">
+                    </label>
+                </div>
+                <div class="filter col-12 col-lg-4 border-left border-right border-bottom border-dark p-0 bg-gray coding-checked">
+                    <label for="filter-coding" class="h5 m-0 d-flex align-items-center p-4">
+                        <span class="mr-5">Проекти на студенти по академијата за програмирање</span>
+                        <i class="fas fa-check-circle c-gray"></i>
+                        <input type="checkbox" id="filter-coding">
+                    </label>
+                </div>
+                <div class="filter col-12 col-lg-4 border-left border-right border-bottom border-dark p-0 bg-gray design-checked">
+                    <label for="filter-design" class="h5 m-0 d-flex align-items-center p-4">
+                        <span class="mr-5">Проекти на студенти по академијата за дизајн</span>
+                        <i class="fas fa-check-circle c-gray"></i>
+                        <input type="checkbox" id="filter-design">
+                    </label>
+                </div>
+            </div>
+        </div>
+        <div class="container-fluid text-center bg-yellow py-5">
+            <p class="h1 font-weight-bold mb-5">Проекти</p>
+            <div class="container mb-5 pb-5">
+            <div class="row">
+                <div class="col-12 col-md-4 mb-4 mb-md-4 carde marketing">
+                    <div class="card br-15 shadow">
+                        <img class="card-img-top" src="../Design/stockphoto1.jpg" alt="Stock Photo 1">
+                        <div class="card-body text-left">
+                          <span class="smaller bg-yellow font-weight-bold py-1 px-2">Академија за Маркетинг</span>
+                          <h5 class="card-title font-weight-bold text-left mt-2">Име на проектот стои овде во две линии</h5>
+                          <p class="card-text text-left">Краток опис во кој студентите ќе можат да опишат за што се работи во проектот.</p>
+                          <span class="d-block small font-weight-bold text-left mb-4">Април - Октомври 2021</span>
+                          <div class="text-right">
+                          <a href="https://brainster.co/marketing/" class="btn btn-danger">Дознај повеќе</a>
+                          </div>
+                        </div>
+                      </div>
+                </div>
+                <div class="col-12 col-md-4 mb-4 mb-md-4 carde marketing">
+                    <div class="card br-15 shadow">
+                        <img class="card-img-top" src="../Design/stockphoto2.jpg" alt="Stock Photo 2">
+                        <div class="card-body text-left">
+                          <span class="smaller bg-yellow font-weight-bold py-1 px-2">Академија за Маркетинг</span>
+                          <h5 class="card-title font-weight-bold text-left mt-2">Име на проектот стои овде во две линии</h5>
+                          <p class="card-text text-left">Краток опис во кој студентите ќе можат да опишат за што се работи во проектот.</p>
+                          <span class="d-block small font-weight-bold text-left mb-4">Април - Октомври 2021</span>
+                          <div class="text-right">
+                          <a href="https://brainster.co/marketing/" class="btn btn-danger">Дознај повеќе</a>
+                          </div>
+                        </div>
+                      </div>
+                </div>
+                <div class="col-12 col-md-4 mb-4 mb-md-4 carde marketing">
+                    <div class="card br-15 shadow">
+                        <img class="card-img-top" src="../Design/stockphoto3.jpg" alt="Stock Photo 3">
+                        <div class="card-body text-left">
+                          <span class="smaller bg-yellow font-weight-bold py-1 px-2">Академија за Маркетинг</span>
+                          <h5 class="card-title font-weight-bold text-left mt-2">Име на проектот стои овде во две линии</h5>
+                          <p class="card-text text-left">Краток опис во кој студентите ќе можат да опишат за што се работи во проектот.</p>
+                          <span class="d-block small font-weight-bold text-left mb-4">Април - Октомври 2021</span>
+                          <div class="text-right">
+                          <a href="https://brainster.co/marketing/" class="btn btn-danger">Дознај повеќе</a>
+                          </div>
+                        </div>
+                      </div>
+                </div>
+                <div class="col-12 col-md-4 mb-4 mb-md-4 carde marketing">
+                    <div class="card br-15 shadow">
+                        <img class="card-img-top" src="../Design/stockphoto1.jpg" alt="Stock Photo 1">
+                        <div class="card-body text-left">
+                          <span class="smaller bg-yellow font-weight-bold py-1 px-2">Академија за Маркетинг</span>
+                          <h5 class="card-title font-weight-bold text-left mt-2">Име на проектот стои овде во две линии</h5>
+                          <p class="card-text text-left">Краток опис во кој студентите ќе можат да опишат за што се работи во проектот.</p>
+                          <span class="d-block small font-weight-bold text-left mb-4">Април - Октомври 2021</span>
+                          <div class="text-right">
+                          <a href="https://brainster.co/marketing/" class="btn btn-danger">Дознај повеќе</a>
+                          </div>
+                        </div>
+                      </div>
+                </div>
+                <div class="col-12 col-md-4 mb-4 mb-md-4 carde marketing">
+                    <div class="card br-15 shadow">
+                        <img class="card-img-top" src="../Design/stockphoto2.jpg" alt="Stock Photo 2">
+                        <div class="card-body text-left">
+                          <span class="smaller bg-yellow font-weight-bold py-1 px-2">Академија за Маркетинг</span>
+                          <h5 class="card-title font-weight-bold text-left mt-2">Име на проектот стои овде во две линии</h5>
+                          <p class="card-text text-left">Краток опис во кој студентите ќе можат да опишат за што се работи во проектот.</p>
+                          <span class="d-block small font-weight-bold text-left mb-4">Април - Октомври 2021</span>
+                          <div class="text-right">
+                          <a href="https://brainster.co/marketing/" class="btn btn-danger">Дознај повеќе</a>
+                          </div>
+                        </div>
+                      </div>
+                </div>
+                <div class="col-12 col-md-4 mb-4 mb-md-4 carde marketing">
+                    <div class="card br-15 shadow">
+                        <img class="card-img-top" src="../Design/stockphoto3.jpg" alt="Stock Photo 3">
+                        <div class="card-body text-left">
+                          <span class="smaller bg-yellow font-weight-bold py-1 px-2">Академија за Маркетинг</span>
+                          <h5 class="card-title font-weight-bold text-left mt-2">Име на проектот стои овде во две линии</h5>
+                          <p class="card-text text-left">Краток опис во кој студентите ќе можат да опишат за што се работи во проектот.</p>
+                          <span class="d-block small font-weight-bold text-left mb-4">Април - Октомври 2021</span>
+                          <div class="text-right">
+                          <a href="https://brainster.co/marketing/" class="btn btn-danger">Дознај повеќе</a>
+                          </div>
+                        </div>
+                      </div>
+                </div>
+                <div class="col-12 col-md-4 mb-4 mb-md-4 carde design">
+                    <div class="card br-15 shadow">
+                        <img class="card-img-top" src="../Design/stockphoto4.jpg" alt="Stock Photo 4">
+                        <div class="card-body text-left">
+                          <span class="smaller bg-yellow font-weight-bold py-1 px-2">Академија за Дизајн</span>
+                          <h5 class="card-title font-weight-bold text-left mt-2">Име на проектот стои овде во две линии</h5>
+                          <p class="card-text text-left">Краток опис во кој студентите ќе можат да опишат за што се работи во проектот.</p>
+                          <span class="d-block small font-weight-bold text-left mb-4">Април - Октомври 2021</span>
+                          <div class="text-right">
+                          <a href="https://brainster.co/graphic-design/" class="btn btn-danger">Дознај повеќе</a>
+                          </div>
+                        </div>
+                      </div>
+                </div>
+                <div class="col-12 col-md-4 mb-4 mb-md-4 carde design">
+                    <div class="card br-15 shadow">
+                        <img class="card-img-top" src="../Design/stockphoto5.jpg" alt="Stock Photo 5">
+                        <div class="card-body text-left">
+                          <span class="smaller bg-yellow font-weight-bold py-1 px-2">Академија за Дизајн</span>
+                          <h5 class="card-title font-weight-bold text-left mt-2">Име на проектот стои овде во две линии</h5>
+                          <p class="card-text text-left">Краток опис во кој студентите ќе можат да опишат за што се работи во проектот.</p>
+                          <span class="d-block small font-weight-bold text-left mb-4">Април - Октомври 2021</span>
+                          <div class="text-right">
+                          <a href="https://brainster.co/graphic-design/" class="btn btn-danger">Дознај повеќе</a>
+                          </div>
+                        </div>
+                      </div>
+                </div>
+                <div class="col-12 col-md-4 mb-4 mb-md-4 carde design">
+                    <div class="card br-15 shadow">
+                        <img class="card-img-top" src="../Design/stockphoto6.jpg" alt="Stock Photo 6">
+                        <div class="card-body text-left">
+                          <span class="smaller bg-yellow font-weight-bold py-1 px-2">Академија за Дизајн</span>
+                          <h5 class="card-title font-weight-bold text-left mt-2">Име на проектот стои овде во две линии</h5>
+                          <p class="card-text text-left">Краток опис во кој студентите ќе можат да опишат за што се работи во проектот.</p>
+                          <span class="d-block small font-weight-bold text-left mb-4">Април - Октомври 2021</span>
+                          <div class="text-right">
+                          <a href="https://brainster.co/graphic-design/" class="btn btn-danger">Дознај повеќе</a>
+                          </div>
+                        </div>
+                      </div>
+                </div>
+                <div class="col-12 col-md-4 mb-4 mb-md-4 carde design">
+                    <div class="card br-15 shadow">
+                        <img class="card-img-top" src="../Design/stockphoto4.jpg" alt="Stock Photo 4">
+                        <div class="card-body text-left">
+                          <span class="smaller bg-yellow font-weight-bold py-1 px-2">Академија за Дизајн</span>
+                          <h5 class="card-title font-weight-bold text-left mt-2">Име на проектот стои овде во две линии</h5>
+                          <p class="card-text text-left">Краток опис во кој студентите ќе можат да опишат за што се работи во проектот.</p>
+                          <span class="d-block small font-weight-bold text-left mb-4">Април - Октомври 2021</span>
+                          <div class="text-right">
+                          <a href="https://brainster.co/graphic-design/" class="btn btn-danger">Дознај повеќе</a>
+                          </div>
+                        </div>
+                      </div>
+                </div>
+                <div class="col-12 col-md-4 mb-4 mb-md-4 carde coding">
+                    <div class="card br-15 shadow">
+                        <img class="card-img-top" src="../Design/stockphoto7.jpg" alt="Stock Photo 7">
+                        <div class="card-body text-left">
+                          <span class="smaller bg-yellow font-weight-bold py-1 px-2">Академија за Програмирање</span>
+                          <h5 class="card-title font-weight-bold text-left mt-2">Име на проектот стои овде во две линии</h5>
+                          <p class="card-text text-left">Краток опис во кој студентите ќе можат да опишат за што се работи во проектот.</p>
+                          <span class="d-block small font-weight-bold text-left mb-4">Април - Октомври 2021</span>
+                          <div class="text-right">
+                          <a href="https://brainster.co/full-stack/" class="btn btn-danger">Дознај повеќе</a>
+                          </div>
+                        </div>
+                      </div>
+                </div>
+                <div class="col-12 col-md-4 mb-4 mb-md-4 carde coding">
+                    <div class="card br-15 shadow">
+                        <img class="card-img-top" src="../Design/stockphoto8.jpg" alt="Stock Photo 8">
+                        <div class="card-body text-left">
+                          <span class="smaller bg-yellow font-weight-bold py-1 px-2">Академија за Програмирање</span>
+                          <h5 class="card-title font-weight-bold text-left mt-2">Име на проектот стои овде во две линии</h5>
+                          <p class="card-text text-left">Краток опис во кој студентите ќе можат да опишат за што се работи во проектот.</p>
+                          <span class="d-block small font-weight-bold text-left mb-4">Април - Октомври 2021</span>
+                          <div class="text-right">
+                          <a href="https://brainster.co/full-stack/" class="btn btn-danger">Дознај повеќе</a>
+                          </div>
+                        </div>
+                      </div>
+                </div>
+                <div class="col-12 col-md-4 mb-4 mb-md-4 carde coding">
+                    <div class="card br-15 shadow">
+                        <img class="card-img-top" src="../Design/stockphoto9.jpg" alt="Stock Photo 9">
+                        <div class="card-body text-left">
+                          <span class="smaller bg-yellow font-weight-bold py-1 px-2">Академија за Програмирање</span>
+                          <h5 class="card-title font-weight-bold text-left mt-2">Име на проектот стои овде во две линии</h5>
+                          <p class="card-text text-left">Краток опис во кој студентите ќе можат да опишат за што се работи во проектот.</p>
+                          <span class="d-block small font-weight-bold text-left mb-4">Април - Октомври 2021</span>
+                          <div class="text-right">
+                          <a href="https://brainster.co/full-stack/" class="btn btn-danger">Дознај повеќе</a>
+                          </div>
+                        </div>
+                      </div>
+                </div>
+                <div class="col-12 col-md-4 mb-4 mb-md-4 carde coding">
+                    <div class="card br-15 shadow">
+                        <img class="card-img-top" src="../Design/stockphoto7.jpg" alt="Stock Photo 7">
+                        <div class="card-body text-left">
+                          <span class="smaller bg-yellow font-weight-bold py-1 px-2">Академија за Програмирање</span>
+                          <h5 class="card-title font-weight-bold text-left mt-2">Име на проектот стои овде во две линии</h5>
+                          <p class="card-text text-left">Краток опис во кој студентите ќе можат да опишат за што се работи во проектот.</p>
+                          <span class="d-block small font-weight-bold text-left mb-4">Април - Октомври 2021</span>
+                          <div class="text-right">
+                          <a href="https://brainster.co/full-stack/" class="btn btn-danger">Дознај повеќе</a>
+                          </div>
+                        </div>
+                      </div>
+                </div>
+                <div class="col-12 col-md-4 mb-4 mb-md-4 carde coding">
+                    <div class="card br-15 shadow">
+                        <img class="card-img-top" src="../Design/stockphoto8.jpg" alt="Stock Photo 8">
+                        <div class="card-body text-left">
+                          <span class="smaller bg-yellow font-weight-bold py-1 px-2">Академија за Програмирање</span>
+                          <h5 class="card-title font-weight-bold text-left mt-2">Име на проектот стои овде во две линии</h5>
+                          <p class="card-text text-left">Краток опис во кој студентите ќе можат да опишат за што се работи во проектот.</p>
+                          <span class="d-block small font-weight-bold text-left mb-4">Април - Октомври 2021</span>
+                          <div class="text-right">
+                          <a href="https://brainster.co/full-stack/" class="btn btn-danger">Дознај повеќе</a>
+                          </div>
+                        </div>
+                      </div>
+                </div>
+                <div class="col-12 col-md-4 mb-4 mb-md-4 carde coding">
+                    <div class="card br-15 shadow">
+                        <img class="card-img-top" src="../Design/stockphoto9.jpg" alt="Stock Photo 9">
+                        <div class="card-body text-left">
+                          <span class="smaller bg-yellow font-weight-bold py-1 px-2">Академија за Програмирање</span>
+                          <h5 class="card-title font-weight-bold text-left mt-2">Име на проектот стои овде во две линии</h5>
+                          <p class="card-text text-left">Краток опис во кој студентите ќе можат да опишат за што се работи во проектот.</p>
+                          <span class="d-block small font-weight-bold text-left mb-4">Април - Октомври 2021</span>
+                          <div class="text-right">
+                          <a href="https://brainster.co/full-stack/" class="btn btn-danger">Дознај повеќе</a>
+                          </div>
+                        </div>
+                      </div>
+                </div>
+                <div class="col-12 col-md-4 mb-4 mb-md-4 carde coding">
+                    <div class="card br-15 shadow">
+                        <img class="card-img-top" src="../Design/stockphoto7.jpg" alt="Stock Photo 7">
+                        <div class="card-body text-left">
+                          <span class="smaller bg-yellow font-weight-bold py-1 px-2">Академија за Програмирање</span>
+                          <h5 class="card-title font-weight-bold text-left mt-2">Име на проектот стои овде во две линии</h5>
+                          <p class="card-text text-left">Краток опис во кој студентите ќе можат да опишат за што се работи во проектот.</p>
+                          <span class="d-block small font-weight-bold text-left mb-4">Април - Октомври 2021</span>
+                          <div class="text-right">
+                          <a href="https://brainster.co/full-stack/" class="btn btn-danger">Дознај повеќе</a>
+                          </div>
+                        </div>
+                      </div>
+                </div>
+                <div class="col-12 col-md-4 mb-4 mb-md-0 carde coding">
+                    <div class="card br-15 shadow">
+                        <img class="card-img-top" src="../Design/stockphoto8.jpg" alt="Stock Photo 8">
+                        <div class="card-body text-left">
+                          <span class="smaller bg-yellow font-weight-bold py-1 px-2">Академија за Програмирање</span>
+                          <h5 class="card-title font-weight-bold text-left mt-2">Име на проектот стои овде во две линии</h5>
+                          <p class="card-text text-left">Краток опис во кој студентите ќе можат да опишат за што се работи во проектот.</p>
+                          <span class="d-block small font-weight-bold text-left mb-4">Април - Октомври 2021</span>
+                          <div class="text-right">
+                          <a href="https://brainster.co/full-stack/" class="btn btn-danger">Дознај повеќе</a>
+                          </div>
+                        </div>
+                      </div>
+                </div>
+                <div class="col-12 col-md-4 mb-4 mb-md-0 carde coding">
+                    <div class="card br-15 shadow">
+                        <img class="card-img-top" src="../Design/stockphoto9.jpg" alt="Stock Photo 9">
+                        <div class="card-body text-left">
+                          <span class="smaller bg-yellow font-weight-bold py-1 px-2">Академија за Програмирање</span>
+                          <h5 class="card-title font-weight-bold text-left mt-2">Име на проектот стои овде во две линии</h5>
+                          <p class="card-text text-left">Краток опис во кој студентите ќе можат да опишат за што се работи во проектот.</p>
+                          <span class="d-block small font-weight-bold text-left mb-4">Април - Октомври 2021</span>
+                          <div class="text-right">
+                          <a href="https://brainster.co/full-stack/" class="btn btn-danger">Дознај повеќе</a>
+                          </div>
+                        </div>
+                      </div>
+                </div>
+                <div class="col-12 col-md-4 mb-4 mb-md-0 carde coding">
+                    <div class="card br-15 shadow">
+                        <img class="card-img-top" src="../Design/stockphoto7.jpg" alt="Stock Photo 7">
+                        <div class="card-body text-left">
+                          <span class="smaller bg-yellow font-weight-bold py-1 px-2">Академија за Програмирање</span>
+                          <h5 class="card-title font-weight-bold text-left mt-2">Име на проектот стои овде во две линии</h5>
+                          <p class="card-text text-left">Краток опис во кој студентите ќе можат да опишат за што се работи во проектот.</p>
+                          <span class="d-block small font-weight-bold text-left mb-4">Април - Октомври 2021</span>
+                          <div class="text-right">
+                          <a href="https://brainster.co/full-stack/" class="btn btn-danger">Дознај повеќе</a>
+                          </div>
+                        </div>
+                      </div>
+                </div>
+            </div>
+            </div>
+        </div>
         <div class="container-fluid p-0 bg-gray text-white">
             <p class="m-0 py-3 text-center">Изработено со &#128151 од студентите на Brainster</p>
         </div>
+
+
+        <script>
+
+            function openNav() {
+            document.getElementById("mobileNav").style.display = "block";
+            }
+
+            function closeNav() {
+            document.getElementById("mobileNav").style.display = "none";
+            }
+
+            document.querySelector("#filter-coding").addEventListener("change", filterCoding);
+            document.querySelector("#filter-design").addEventListener("change", filterDesign);
+            document.querySelector("#filter-marketing").addEventListener("change", filterMarketing);
+            
+    
+            function filterCoding() {
+                hideAllCards();
+    
+                if(document.querySelector("#filter-coding").checked) {
+
+                    var codingChecked = document.querySelectorAll(".coding-checked");
+                    codingChecked.forEach(element => {
+                        element.style.background = "#ff0000";
+                        element.style.color = "#000";
+                    })
+
+                    var codingCards = document.querySelectorAll(".coding");
+                    codingCards.forEach(codingCard => {
+                        codingCard.style.display = "inline-block";
+                    });
+    
+                    document.querySelector("#filter-design").checked = false;
+                    document.querySelector("#filter-marketing").checked = false;
+
+                    var designChecked = document.querySelectorAll(".design-checked");
+                    designChecked.forEach(element => {
+                        element.style.background = "#302F38";
+                        element.style.color = "#fff";
+                    })
+                    var marketingChecked = document.querySelectorAll(".marketing-checked");
+                    marketingChecked.forEach(element => {
+                        element.style.background = "#302F38";
+                        element.style.color = "#fff";
+                    })
+                } else {
+                    showAllCards();
+                    var codingChecked = document.querySelectorAll(".coding-checked");
+                    codingChecked.forEach(element => {
+                        element.style.background = "#302F38";
+                        element.style.color = "#fff";
+                    })
+                }
+            }
+    
+            function filterDesign() {
+                hideAllCards();
+    
+                if(document.querySelector("#filter-design").checked) {
+
+                    var designChecked = document.querySelectorAll(".design-checked");
+                    designChecked.forEach(element => {
+                        element.style.background = "#ff0000";
+                        element.style.color = "#000";
+                    })
+
+                    var designCards = document.querySelectorAll(".design");
+                    designCards.forEach(designCard => {
+                        designCard.style.display = "inline-block";
+                    });
+    
+                    document.querySelector("#filter-coding").checked = false;
+                    document.querySelector("#filter-marketing").checked = false;
+
+                    var codingChecked = document.querySelectorAll(".coding-checked");
+                    codingChecked.forEach(element => {
+                        element.style.background = "#302F38";
+                        element.style.color = "#fff";
+                    })
+                    var marketingChecked = document.querySelectorAll(".marketing-checked");
+                    marketingChecked.forEach(element => {
+                        element.style.background = "#302F38";
+                        element.style.color = "#fff";
+                    })
+                } else {
+                    showAllCards();
+                    var designChecked = document.querySelectorAll(".design-checked");
+                    designChecked.forEach(element => {
+                        element.style.background = "#302F38";
+                        element.style.color = "#fff";
+                    })
+                }
+            }
+    
+            function filterMarketing() {
+                hideAllCards();
+    
+                if(document.querySelector("#filter-marketing").checked) {
+
+                    var marketingChecked = document.querySelectorAll(".marketing-checked");
+                    marketingChecked.forEach(element => {
+                        element.style.background = "#ff0000";
+                        element.style.color = "#000";
+                    })
+
+                    var marketingCards = document.querySelectorAll(".marketing");
+                    marketingCards.forEach(marketingCard => {
+                        marketingCard.style.display = "inline-block";
+                    });
+    
+                    document.querySelector("#filter-design").checked = false;
+                    document.querySelector("#filter-coding").checked = false;
+
+                    var codingChecked = document.querySelectorAll(".coding-checked");
+                    codingChecked.forEach(element => {
+                        element.style.background = "#302F38";
+                        element.style.color = "#fff";
+                    })
+                    var designChecked = document.querySelectorAll(".design-checked");
+                    designChecked.forEach(element => {
+                        element.style.background = "#302F38";
+                        element.style.color = "#fff";
+                    })
+                } else {
+                    showAllCards();
+                    var marketingChecked = document.querySelectorAll(".marketing-checked");
+                    marketingChecked.forEach(element => {
+                        element.style.background = "#302F38";
+                        element.style.color = "#fff";
+                    })
+                }
+            }
+           
+    
+            function hideAllCards() {
+                var allCards = document.querySelectorAll(".carde");  
+    
+                allCards.forEach(card => {
+                    card.style.display = "none";
+                });
+            }
+    
+            function showAllCards() {
+                var allCards = document.querySelectorAll(".carde");  
+    
+                allCards.forEach(card => {
+                    card.style.display = "inline-block";
+                });
+            }
+        </script>
+
 
         <!-- jQuery library -->
         <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
