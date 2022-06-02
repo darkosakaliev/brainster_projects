@@ -38,10 +38,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <input type="password" class="form-control" name="password" id="password" placeholder="Password">
             </div>
         </div>
-        <div class="row justify-content-center">
+        <div class="d-flex justify-content-center">
             <button class="btn btn-lg btn-primary" name="submit">Submit</button>
         </div>
-        <p class="text-center mt-3">Not registered yet? <a href="./register.php">Register now.</a></p>
+        <p class="text-center mt-3">Don't have an account? <a href="<?= route('register'); ?>">Register now.</a></p>
     </form>
 </div>
 

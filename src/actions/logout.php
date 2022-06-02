@@ -1,4 +1,4 @@
 <?php 
 require_once __DIR__ . "/../autoload.php";
 session_destroy();
-redirect(route('home'));
+redirect(route('login'));

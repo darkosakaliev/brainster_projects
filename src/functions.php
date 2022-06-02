@@ -32,6 +32,7 @@ function getBook($con, $id)
 
 function printSessionMessages()
 {
+
   if (isset($_SESSION['msg'])) {
     if ($_SESSION['msg']['status'] == 1) {
       echo "<div class='alert alert-success text-center'>{$_SESSION['msg']['text']}</div>";
@@ -42,16 +43,33 @@ function printSessionMessages()
   }
 }
 
-function printValidationMessages($value) {
-  if ($_SESSION['val']['username'] == 1) {
-    echo "<span class='form-control alert-danger'>Username field must be filled.</span>";
-  } else if($_SESSION['val']['username'] == 2) {
-    echo "<span class='form-control alert-danger'>Username must be minimum 6 characters long.</span>";
-  } else if($_SESSION['val']['email'] == 1) {
-    echo "<span class='form-control alert-danger'>Email field must be filled.</span>";
-  } else if($_SESSION['val']['email'] == 2) {
-    echo "<span class='form-control alert-danger'>Username must be minimum 6 characters long.</span>";
+function printValidationMessages($val)
+{
+  if (isset($_SESSION['val'])) {
+    if ($_SESSION['val'][$val] == 1) {
+      echo "<span class='form-control alert-danger'>{$_SESSION['val']['text']}</span>";
+    }
+    unset($_SESSION['val']);
   }
+}
+
+function input_data($data)
+{
+  $data = trim($data);
+  $data = stripslashes($data);
+  $data = htmlspecialchars($data);
+  return $data;
+}
+
+function asset($location)
+{
+  $path = [APP_URL, "assets", $location];
+
+  foreach ($path as $key => $part) {
+
+    $path[$key] = trim($part, "/",);
+  }
+  return implode("/", $path);
 }
 
 function route($route, $id = null)
@@ -80,11 +98,12 @@ function redirect($route)
 
 function auth()
 {
-    return isset($_SESSION['user']);
+  return isset($_SESSION['user']);
 }
 
-function admin() {
-  if(isset($_SESSION['user']) && $_SESSION['user']['role_id'] == 2) {
+function admin()
+{
+  if (isset($_SESSION['user']) && $_SESSION['user']['role_id'] == 2) {
     return true;
   } else {
     return false;
