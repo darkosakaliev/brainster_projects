@@ -60,7 +60,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 ?>
 <div class="container my-4">
-    <h1 class="text-center mb-5">Register</h1>
+    <h1 class="text-center text-white mb-5">Register</h1>
     <?= printSessionMessages(); ?>
     <form action="" method="POST">
         <div class="row justify-content-center">
@@ -82,7 +82,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             </div>
         </div>
         <div class="d-flex justify-content-center">
-            <button class="btn btn-lg btn-primary" name="submit">Submit</button>
+            <button class="btn btn-lg bg-warmyellow" name="submit">Submit</button>
         </div>
     </form>
 </div>

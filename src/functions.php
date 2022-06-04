@@ -2,7 +2,22 @@
 
 function getAllBooks($con)
 {
-  $sql  = "SELECT books.id, books.title, authors.name AS author, books.date_of_issue, books.number_of_pages, books.cover, categories.name as category FROM books LEFT JOIN `authors` ON books.author_id = authors.id LEFT JOIN `categories` ON books.category_id = categories.id;";
+  $sql  = "SELECT books.id, books.title, CONCAT(authors.first_name,' ',authors.last_name) AS author, books.date_of_issue, books.number_of_pages, books.cover, categories.name as category, books.description FROM books LEFT JOIN `authors` ON books.author_id = authors.id LEFT JOIN `categories` ON books.category_id = categories.id WHERE books.is_deleted = 0;";
+  $stmt = $con->prepare($sql);
+  $stmt->execute();
+
+  if ($stmt->rowCount() > 0) {
+    $books = $stmt->fetchAll();
+  } else {
+    $books = 0;
+  }
+
+  return $books;
+}
+
+function getAllDeletedBooks($con)
+{
+  $sql  = "SELECT books.id, books.title, CONCAT(authors.first_name,' ',authors.last_name) AS author, books.date_of_issue, books.number_of_pages, books.cover, categories.name as category, books.description FROM books LEFT JOIN `authors` ON books.author_id = authors.id LEFT JOIN `categories` ON books.category_id = categories.id WHERE books.is_deleted = 1;";
   $stmt = $con->prepare($sql);
   $stmt->execute();
 
@@ -17,7 +32,7 @@ function getAllBooks($con)
 
 function getBook($con, $id)
 {
-  $sql = "SELECT books.id, books.title, authors.name AS author, books.date_of_issue, books.number_of_pages, books.cover, books.description, categories.name as category FROM books LEFT JOIN `authors` ON books.author_id = authors.id LEFT JOIN `categories` ON books.category_id = categories.id WHERE books.id = :id;";
+  $sql = "SELECT books.id, books.title, CONCAT(authors.first_name,' ',authors.last_name) AS author, books.date_of_issue, books.number_of_pages, books.cover, books.description, categories.name as category FROM books LEFT JOIN `authors` ON books.author_id = authors.id LEFT JOIN `categories` ON books.category_id = categories.id WHERE books.id = :id;";
   $stmt = $con->prepare($sql);
   $stmt->execute(['id' => $id]);
 
@@ -28,6 +43,62 @@ function getBook($con, $id)
   }
 
   return $book;
+}
+
+function getAllCategories($con) {
+  $sql = "SELECT * FROM categories WHERE categories.is_deleted = 0";
+  $stmt = $con->prepare($sql);
+  $stmt->execute();
+
+  if ($stmt->rowCount() > 0) {
+    $categories = $stmt->fetchAll();
+  } else {
+    $categories = 0;
+  }
+
+  return $categories;
+}
+
+function getAllDeletedCategories($con) {
+  $sql = "SELECT * FROM categories WHERE categories.is_deleted = 1";
+  $stmt = $con->prepare($sql);
+  $stmt->execute();
+
+  if ($stmt->rowCount() > 0) {
+    $categories = $stmt->fetchAll();
+  } else {
+    $categories = 0;
+  }
+
+  return $categories;
+}
+
+function getAllAuthors($con) {
+  $sql = "SELECT authors.id, CONCAT(authors.first_name,' ',authors.last_name) AS name, authors.bio FROM authors WHERE authors.is_deleted = 0";
+  $stmt = $con->prepare($sql);
+  $stmt->execute();
+
+  if ($stmt->rowCount() > 0) {
+    $authors = $stmt->fetchAll();
+  } else {
+    $authors = 0;
+  }
+
+  return $authors;
+}
+
+function getAllDeletedAuthors($con) {
+  $sql = "SELECT authors.id, CONCAT(authors.first_name,' ',authors.last_name) AS name, authors.bio FROM authors WHERE authors.is_deleted = 1";
+  $stmt = $con->prepare($sql);
+  $stmt->execute();
+
+  if ($stmt->rowCount() > 0) {
+    $authors = $stmt->fetchAll();
+  } else {
+    $authors = 0;
+  }
+
+  return $authors;
 }
 
 function printSessionMessages()
@@ -47,7 +118,7 @@ function printValidationMessages($val)
 {
   if (isset($_SESSION['val'])) {
     if ($_SESSION['val'][$val] == 1) {
-      echo "<span class='form-control alert-danger'>{$_SESSION['val']['text']}</span>";
+      echo "<span class='form-control alert-danger mt-2'>{$_SESSION['val']['text']}</span>";
     }
     unset($_SESSION['val']);
   }
@@ -108,4 +179,11 @@ function admin()
   } else {
     return false;
   }
+}
+
+function adminOnly()
+{
+    if (!admin()) {
+        redirect(route('home'));
+    }
 }

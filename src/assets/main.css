@@ -1,18 +1,57 @@
-.imagefit {
-    object-fit: fill;
+.card-img-top {
+  object-fit:fill;
+  height: 100%;
 }
 
 .card-img-overlay {
-    opacity: 0;
+  opacity: 0;
 }
 
 .card-img-overlay:hover {
-    opacity: 1;
-    background-color: rgba(0, 0, 0, 0.6);
-    animation: fadeIn 0.3s;
+  opacity: 1;
+  background-color: rgba(0, 0, 0, 0.6);
+  animation: fadeIn 0.3s;
 }
 
 @keyframes fadeIn {
-    0% {opacity:0;}
-    100% {opacity:1;}
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+.bg-warmyellow {
+  background-color: rgb(255, 239, 148) !important;
+}
+
+.text-warmyellow {
+  color: rgb(255, 239, 148) !important;
+}
+
+.bg-body {
+  background-color: #33373b !important;
+}
+
+.accordion-button {
+  color: inherit;
+  background: rgb(255, 239, 148);
+  color: black;
+  font-weight: bold;
+}
+
+.accordion-button:not(.collapsed) {
+  color: inherit;
+  background: rgb(255, 239, 148);
+  color: black;
+  font-weight: bold;
+}
+
+.accordion-button:not(.collapsed)::after {
+  filter: brightness(0%);
+}
+
+.accordion-button:focus {
+  box-shadow: inherit;
 }

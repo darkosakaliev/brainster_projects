@@ -26,7 +26,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 ?>
 <div class="container my-4">
-    <h1 class="text-center mb-5">Login</h1>
+    <h1 class="text-center text-white mb-5">Login</h1>
     <form action="" method="POST">
         <div class="row justify-content-center">
             <div class="col-12 col-md-8 mb-4">
@@ -39,9 +39,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             </div>
         </div>
         <div class="d-flex justify-content-center">
-            <button class="btn btn-lg btn-primary" name="submit">Submit</button>
+            <button class="btn btn-lg bg-warmyellow" name="submit">Submit</button>
         </div>
-        <p class="text-center mt-3">Don't have an account? <a href="<?= route('register'); ?>">Register now.</a></p>
+        <p class="text-center text-white mt-3">Don't have an account? <a class="text-warmyellow" href="<?= route('register'); ?>">Register now.</a></p>
     </form>
 </div>
 
