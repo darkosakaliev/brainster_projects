@@ -32,7 +32,7 @@ function getAllDeletedBooks($con)
 
 function getBook($con, $id)
 {
-  $sql = "SELECT books.id, books.title, CONCAT(authors.first_name,' ',authors.last_name) AS author, books.date_of_issue, books.number_of_pages, books.cover, books.description, categories.name as category FROM books LEFT JOIN `authors` ON books.author_id = authors.id LEFT JOIN `categories` ON books.category_id = categories.id WHERE books.id = :id;";
+  $sql = "SELECT books.id, books.title, CONCAT(authors.first_name,' ',authors.last_name) AS author, books.date_of_issue, books.number_of_pages, books.cover, books.description, categories.name as category, authors.bio FROM books LEFT JOIN `authors` ON books.author_id = authors.id LEFT JOIN `categories` ON books.category_id = categories.id WHERE books.id = :id;";
   $stmt = $con->prepare($sql);
   $stmt->execute(['id' => $id]);
 

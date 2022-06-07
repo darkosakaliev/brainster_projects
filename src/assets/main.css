@@ -55,3 +55,11 @@
 .accordion-button:focus {
   box-shadow: inherit;
 }
+
+.text-justify {
+  text-align: justify;
+}
+
+.pointerCursor {
+  cursor: pointer !important;
+}

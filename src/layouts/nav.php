@@ -23,9 +23,9 @@
         </ul>
         <?php if (auth()) { ?>
             <?php if (admin()) { ?>
-                <a class="btn bg-warmyellow text-dark" href="<?= route('logout') ?>">Log out, <?= $_SESSION['user']['username'] ?></a>
+                <a class="btn bg-warmyellow text-dark" href="<?= route('logout') ?>">Log out, admin <?= $_SESSION['user']['first_name'] ?>  <?= $_SESSION['user']['last_name'] ?></a>
             <?php } else { ?>
-                <a class="btn bg-warmyellow text-dark" href="<?= route('logout') ?>">Log out, <?= $_SESSION['user']['username'] ?></a>
+                <a class="btn bg-warmyellow text-dark" href="<?= route('logout') ?>">Log out, user <?= $_SESSION['user']['first_name'] ?>  <?= $_SESSION['user']['last_name'] ?></a>
             <?php } ?>
         <?php } else {  ?>
             <a class="btn bg-warmyellow text-dark" href="<?= route('login') ?>">Login/Register</a>
