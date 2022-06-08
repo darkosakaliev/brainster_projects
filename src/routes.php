@@ -1,5 +1,7 @@
 <?php
 
+require_once __DIR__ . '/autoload.php';
+
 $appUrl = trim(APP_URL, "/") . "/";
 
 $appRoutes = [
@@ -12,6 +14,7 @@ $appRoutes = [
     'authors' => $appUrl . "pages/authors.php",
     'categories' => $appUrl . "pages/categories.php",
     'books' => $appUrl . "pages/books.php",
+    'reviews' => $appUrl . "pages/reviews.php",
     'createCategory' => $appUrl . "pages/categories/create.php",
     'addCategory' => $appUrl . "actions/categories/store.php",
     'editCategory' => $appUrl . "pages/categories/edit.php?id={ID}",
@@ -29,5 +32,9 @@ $appRoutes = [
     'editBook' => $appUrl . "pages/books/edit.php?id={ID}",
     'updateBook' => $appUrl . "actions/books/update.php?id={ID}",
     'deleteBook' => $appUrl . "actions/books/delete.php?id={ID}",
-    'restoreBook' => $appUrl . "actions/books/restore.php?id={ID}"
+    'restoreBook' => $appUrl . "actions/books/restore.php?id={ID}",
+    'addReview' => $appUrl . "actions/reviews/store.php?id={ID}",
+    'deleteReview' => $appUrl . "actions/reviews/delete.php?id={ID}",
+    'approveReview' => $appUrl . "actions/reviews/approve.php?id={ID}",
+    'rejectReview' => $appUrl . "actions/reviews/reject.php?id={ID}"
 ];

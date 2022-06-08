@@ -45,7 +45,8 @@ function getBook($con, $id)
   return $book;
 }
 
-function getAllCategories($con) {
+function getAllCategories($con)
+{
   $sql = "SELECT * FROM categories WHERE categories.is_deleted = 0";
   $stmt = $con->prepare($sql);
   $stmt->execute();
@@ -59,7 +60,8 @@ function getAllCategories($con) {
   return $categories;
 }
 
-function getAllDeletedCategories($con) {
+function getAllDeletedCategories($con)
+{
   $sql = "SELECT * FROM categories WHERE categories.is_deleted = 1";
   $stmt = $con->prepare($sql);
   $stmt->execute();
@@ -73,7 +75,8 @@ function getAllDeletedCategories($con) {
   return $categories;
 }
 
-function getAllAuthors($con) {
+function getAllAuthors($con)
+{
   $sql = "SELECT authors.id, CONCAT(authors.first_name,' ',authors.last_name) AS name, authors.bio FROM authors WHERE authors.is_deleted = 0";
   $stmt = $con->prepare($sql);
   $stmt->execute();
@@ -87,7 +90,8 @@ function getAllAuthors($con) {
   return $authors;
 }
 
-function getAllDeletedAuthors($con) {
+function getAllDeletedAuthors($con)
+{
   $sql = "SELECT authors.id, CONCAT(authors.first_name,' ',authors.last_name) AS name, authors.bio FROM authors WHERE authors.is_deleted = 1";
   $stmt = $con->prepare($sql);
   $stmt->execute();
@@ -99,6 +103,79 @@ function getAllDeletedAuthors($con) {
   }
 
   return $authors;
+}
+
+function getAllReviews($con, $id)
+{
+  $sql = "SELECT user_id, book_reviews.book_id, CONCAT(users.first_name, ' ', users.last_name) as name, book_reviews.review, is_approved FROM `book_reviews` LEFT JOIN users ON book_reviews.user_id = users.id WHERE book_id = :book_id";
+  $stmt = $con->prepare($sql);
+  $stmt->execute(['book_id' => $id]);
+
+  if ($stmt->rowCount() > 0) {
+    $reviews = $stmt->fetchAll();
+  } else {
+    $reviews = 0;
+  }
+
+  return $reviews;
+}
+
+function getAllApprovedReviews($con, $id)
+{
+  $sql = "SELECT user_id, book_reviews.book_id, CONCAT(users.first_name, ' ', users.last_name) as name, book_reviews.review, is_approved FROM `book_reviews` LEFT JOIN users ON book_reviews.user_id = users.id WHERE book_id = :book_id AND is_approved = 1";
+  $stmt = $con->prepare($sql);
+  $stmt->execute(['book_id' => $id]);
+
+  if ($stmt->rowCount() > 0) {
+    $reviews = $stmt->fetchAll();
+  } else {
+    $reviews = 0;
+  }
+
+  return $reviews;
+}
+
+function getAllBookApprovedReviews($con) {
+  $sql = "SELECT book_reviews.id, books.title, CONCAT(users.first_name, ' ', users.last_name) as name, book_reviews.review FROM `book_reviews` LEFT JOIN users ON book_reviews.user_id = users.id LEFT JOIN books ON book_reviews.book_id = books.id WHERE is_approved = 1;";
+  $stmt = $con->prepare($sql);
+  $stmt->execute();
+
+  if ($stmt->rowCount() > 0) {
+    $reviews = $stmt->fetchAll();
+  } else {
+    $reviews = 0;
+  }
+
+  return $reviews;
+}
+
+function getAllBookRejectedReviews($con) {
+  $sql = "SELECT book_reviews.id, books.title, CONCAT(users.first_name, ' ', users.last_name) as name, book_reviews.review FROM `book_reviews` LEFT JOIN users ON book_reviews.user_id = users.id LEFT JOIN books ON book_reviews.book_id = books.id WHERE is_approved = 0;";
+  $stmt = $con->prepare($sql);
+  $stmt->execute();
+
+  if ($stmt->rowCount() > 0) {
+    $reviews = $stmt->fetchAll();
+  } else {
+    $reviews = 0;
+  }
+
+  return $reviews;
+}
+
+function getUserReview($con, $bookid, $userid)
+{
+  $sql = "SELECT user_id, book_reviews.book_id, CONCAT(users.first_name, ' ', users.last_name) as name, book_reviews.review, is_approved FROM `book_reviews` LEFT JOIN users ON book_reviews.user_id = users.id WHERE book_id = :book_id AND user_id = :user_id";
+  $stmt = $con->prepare($sql);
+  $stmt->execute(['book_id' => $bookid, 'user_id' => $userid]);
+
+  if ($stmt->rowCount() > 0) {
+    $review = $stmt->fetch();
+  } else {
+    $review = 0;
+  }
+
+  return $review;
 }
 
 function printSessionMessages()
@@ -172,6 +249,13 @@ function auth()
   return isset($_SESSION['user']);
 }
 
+function authOnly()
+{
+  if (!auth()) {
+    redirect(route('home'));
+  }
+}
+
 function admin()
 {
   if (isset($_SESSION['user']) && $_SESSION['user']['role_id'] == 2) {
@@ -183,7 +267,7 @@ function admin()
 
 function adminOnly()
 {
-    if (!admin()) {
-        redirect(route('home'));
-    }
+  if (!admin()) {
+    redirect(route('home'));
+  }
 }

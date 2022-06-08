@@ -2,28 +2,80 @@
 require_once __DIR__ . '/../layouts/header.php';
 
 $book = getBook($conn, $_GET['id']);
+$reviews = getAllApprovedReviews($conn, $_GET['id']);
+if (auth()) {
+    $userReview = getUserReview($conn, $_GET['id'], $_SESSION['user']['id']);
+}
 
 ?>
-    <div class="container my-4">
-        <div class="row bg-dark p-3">
-            <div class="col-3">
-                <img src="<?= $book['cover'] ?>" class="img-fluid" alt="Cover Image">
-            </div>
-            <div class="col-9">
-                <h1 class="text-white">'<?= $book['title'] ?>'</h1>
-                <h3 class="text-white">by <?= $book['author'] ?></h3>
-                <h5 class="text-white">First published: <?= date("F j, Y", strtotime($book['date_of_issue'])) ?></h5>
-                <h5 class="text-white">Number of pages: <?= $book['number_of_pages'] ?></h5>
-                <p class="text-white text-justify mt-3"><?= $book['description'] ?></p>
-            </div>
+<div class="container my-4">
+    <div class="row bg-dark p-3">
+        <div class="col-12 col-lg-3 mb-4 mb-lg-0">
+            <img src="<?= $book['cover'] ?>" class="img-fluid" alt="Cover Image">
         </div>
-        <div class="row bg-dark text-white mt-5 p-4">
-            <div class="col">
-                <h3>About the author:</h3>
-                <p class="text-justify"><?= $book['bio'] ?></p>
-            </div>
+        <div class="col-12 col-lg-9">
+            <h1 class="text-white">'<?= $book['title'] ?>'</h1>
+            <h3 class="text-white">by <?= $book['author'] ?></h3>
+            <h5 class="text-white">First published: <?= date("F j, Y", strtotime($book['date_of_issue'])) ?></h5>
+            <h5 class="text-white">Number of pages: <?= $book['number_of_pages'] ?></h5>
+            <p class="text-white text-justify mt-3"><?= $book['description'] ?></p>
         </div>
     </div>
+    <div class="row bg-dark text-white mt-5 p-4">
+        <div class="col">
+            <h3>About the author:</h3>
+            <p class="text-justify"><?= $book['bio'] ?></p>
+        </div>
+    </div>
+    <div class="row bg-dark text-white mt-5 p-4">
+        <div class="col">
+            <h3 class="mb-4">Book Reviews:</h3>
+            <?php if (!isset($_SESSION['user'])) { ?>
+                <div class='border border-4 rounded p-4 mb-3'>
+                <p class='text-center m-0'>You need to be <a href='<?= route('login') ?> ' class="text-warmyellow">logged in</a> or <a href='<?= route('register') ?>' class="text-warmyellow">register</a> to post a review.</p>
+                </div>
+            <?php } else { ?>
+                <?php if ($userReview) { ?>
+                    <div class='border border-4 rounded p-4 mb-3'>
+                        <h5>Your review:</h5>
+                        <h4><?= $_SESSION['user']['first_name'], ' ', $_SESSION['user']['last_name'] ?></h4>
+                        <p><?= $userReview['review'] ?></p>
+                        <a href='<?= route('deleteReview', $_GET['id']) ?>' class='btn btn-danger'>Delete your review</a>
+                        <?php if (!$userReview['is_approved']) { ?>
+                            <span class='text-warmyellow'>Your review hasn't been approved yet.</span>
+                        <?php } ?>
+                    </div>
+                <?php } else { ?>
+                    <div class='border border-4 rounded p-4'>
+                        <h4>Share your review on this book:</h4>
+                        <form action="<?= route('addReview', $_GET['id']) ?>" method="POST">
+                            <textarea class="form-control" name="review" id="review" cols="100" rows="3" placeholder="Your thoughts"></textarea>
+                            <?php if (isset($_SESSION['val']['review'])) {
+                                printValidationMessages('review');
+                            } ?>
+                            <button type="submit" class="btn bg-warmyellow mt-3">Submit</button>
+                        </form>
+                    </div>
+                <?php } ?>
+            <?php } ?>
+
+            <?php if ($reviews) {
+                foreach ($reviews as $review)
+                    echo "<div class='border border-4 rounded p-4 mt-3'>
+                                <h4 class='mb-2'>{$review['name']}</h4>
+                                <p class='m-0'>{$review['review']}</p>
+                            </div>";
+            } else {
+                echo "
+                <div class='border border-4 rounded p-4 mt-3'>
+                    <p class='text-center p-4 m-0'>There are no reviews on this book yet.</p>
+                </div>
+                ";
+            }
+            ?>
+        </div>
+    </div>
+</div>
 
 
 <?php
