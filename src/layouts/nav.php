@@ -1,5 +1,5 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark px-2">
-    <a class="navbar-brand" href="<?= route("home"); ?>">Brainster<span class="text-warmyellow">Library</span><i class="fa-solid fa-book-open-reader"></i></a>
+    <a class="navbar-brand" href="<?= route("home"); ?>">Brainster<span class="text-warmyellow">Library</span><i class="fa-solid fa-books"></i></a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>

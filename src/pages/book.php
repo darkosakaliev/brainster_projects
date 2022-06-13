@@ -27,12 +27,24 @@ if (auth()) {
             <p class="text-justify"><?= $book['bio'] ?></p>
         </div>
     </div>
+    <?php if (auth()) { ?>
+        <div class="row bg-dark text-white mt-5 p-4" id="notes">
+            <h3>Your notes:</h3>
+            <div class="col-12">
+                <form action="<?= route('storeNote', $_GET['id']) ?>" method="POST" id="noteSubmit">
+                    <input type="text" class="form-control" name="note" id="note" placeholder="Write your note here">
+                    <button type="submit" class="btn bg-warmyellow mt-3">Submit</button>
+                </form>
+            </div>
+            <div class="d-flex flex-wrap align-items-center justify-content-center mt-3" id="noteContainer"></div>
+        </div>
+    <?php } ?>
     <div class="row bg-dark text-white mt-5 p-4">
         <div class="col">
             <h3 class="mb-4">Book Reviews:</h3>
             <?php if (!isset($_SESSION['user'])) { ?>
                 <div class='border border-4 rounded p-4 mb-3'>
-                <p class='text-center m-0'>You need to be <a href='<?= route('login') ?> ' class="text-warmyellow">logged in</a> or <a href='<?= route('register') ?>' class="text-warmyellow">register</a> to post a review.</p>
+                    <p class='text-center m-0'>You need to be <a href='<?= route('login') ?> ' class="text-warmyellow">logged in</a> or <a href='<?= route('register') ?>' class="text-warmyellow">register</a> to post a review.</p>
                 </div>
             <?php } else { ?>
                 <?php if ($userReview) { ?>
@@ -61,9 +73,10 @@ if (auth()) {
 
             <?php if ($reviews) {
                 foreach ($reviews as $review)
-                    echo "<div class='border border-4 rounded p-4 mt-3'>
-                                <h4 class='mb-2'>{$review['name']}</h4>
-                                <p class='m-0'>{$review['review']}</p>
+                    echo "<div class='border border-4 rounded p-4 mt-3 position-relative'>
+                                <h4 class='mb-2'>" . $review['name'] . "</h4>
+                                <p>" . $review['review'] . "</p>
+                                <p class='m-2 position-absolute bottom-0 end-0'>" . timeAgo($review['created_at']) . "</p>
                             </div>";
             } else {
                 echo "
@@ -76,6 +89,7 @@ if (auth()) {
         </div>
     </div>
 </div>
+<div class="bg-dark text-white p-4 text-center quoteDiv"></div>
 
 
 <?php

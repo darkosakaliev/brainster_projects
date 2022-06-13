@@ -64,6 +64,12 @@
   cursor: pointer !important;
 }
 
-.brdr {
-  border-top: 1px solid #dee2e6 !important;
+.pos-minus10 {
+  top: -10px!important;
+  right: -10px!important;
+}
+
+.pos-minus20 {
+  top: -10px!important;
+  right: 25px!important;
 }

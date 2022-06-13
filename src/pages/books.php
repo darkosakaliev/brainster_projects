@@ -67,7 +67,7 @@ $delBooks = getAllDeletedBooks($conn);
                             <td class='d-none d-md-table-cell'>{$delBook['number_of_pages']}</td>
                             <td class='d-none d-md-table-cell'>{$delBook['category']}</td>
                             <td class='text-truncate d-none d-md-table-cell' style='max-width: 3rem;'>{$delBook['description']}</td>
-                            <td style='max-width: 7rem;'><a href='" . route('restoreBook', $delBook['id']) . "' class='btn bg-warmyellow me-3'>Restore</a></td>
+                            <td style='max-width: 10rem;'><a href='" . route('restoreBook', $delBook['id']) . "' class='btn bg-warmyellow me-3'>Restore</a><a href='" . route('deleteBookPerm', $delBook['id']) . "' class='btn text-white bg-danger deleteBtnBook'>Delete Permanently</a></td>
                         </tr>
                         ";
                     }

@@ -27,7 +27,7 @@ $rejectedReviews = getAllBookRejectedReviews($conn);
                         <td>{$review['title']}</td>
                         <td>{$review['name']}</td>
                         <td>{$review['review']}</td>
-                        <td style='max-width: 4rem;'><a href='" . route('approveReview', $review['id']) . "' class='btn bg-warmyellow me-3'>Approve</a></td>
+                        <td><a href='" . route('approveReview', $review['id']) . "' class='btn bg-warmyellow me-3'>Approve</a><a href='" . route('deleteReviewPerm', $review['id']) . "' class='btn btn-danger deleteBtnPerm'>Delete Permanently</a></td>
                     </tr>
                     ";
                     }

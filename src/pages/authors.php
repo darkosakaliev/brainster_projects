@@ -52,7 +52,7 @@ $delAuthors = getAllDeletedAuthors($conn);
                         <tr>
                             <td>{$delAuthor['name']}</td>
                             <td class='w-50 text-truncate' style='max-width:5rem;'>{$delAuthor['bio']}</td>
-                            <td style='max-width: 7rem;'><a href='" . route('restoreAuthor',$delAuthor['id']) . "' class='btn bg-warmyellow me-3'>Restore</a></td>
+                            <td style='max-width: 7rem;'><a href='" . route('restoreAuthor',$delAuthor['id']) . "' class='btn bg-warmyellow me-3'>Restore</a><a href='" . route('deleteAuthorPerm', $delAuthor['id']) . "' class='btn text-white bg-danger deleteBtnPerm'>Delete Permanently</a></td>
                         </tr>
                         ";
                         }

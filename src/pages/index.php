@@ -98,6 +98,7 @@ require_once __DIR__ . '/../layouts/header.php';
     </div>
   </div>
 </div>
+<div class="bg-dark text-white p-4 text-center quoteDiv"></div>
 
 
 <?php

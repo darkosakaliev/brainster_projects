@@ -49,7 +49,7 @@ $delCategories = getAllDeletedCategories($conn);
                         echo "
                         <tr>
                             <td class='w-75'>{$delCategory['name']}</td>
-                            <td style='max-width: 4rem;'><a href='" . route('restoreCategory', $delCategory['id']) . "' class='btn bg-warmyellow me-3'>Restore</a></td>
+                            <td style='max-width: 4rem;'><a href='" . route('restoreCategory', $delCategory['id']) . "' class='btn bg-warmyellow me-3'>Restore</a><a href='" . route('deleteCategoryPerm', $delCategory['id']) . "' class='btn text-white bg-danger deleteBtnPerm'>Delete Permanently</a></td>
                         </tr>
                         ";
                     }

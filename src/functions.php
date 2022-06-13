@@ -122,7 +122,7 @@ function getAllReviews($con, $id)
 
 function getAllApprovedReviews($con, $id)
 {
-  $sql = "SELECT user_id, book_reviews.book_id, CONCAT(users.first_name, ' ', users.last_name) as name, book_reviews.review, is_approved FROM `book_reviews` LEFT JOIN users ON book_reviews.user_id = users.id WHERE book_id = :book_id AND is_approved = 1";
+  $sql = "SELECT user_id, book_reviews.book_id, CONCAT(users.first_name, ' ', users.last_name) as name, book_reviews.review, book_reviews.created_at, is_approved FROM `book_reviews` LEFT JOIN users ON book_reviews.user_id = users.id WHERE book_id = :book_id AND is_approved = 1 ORDER BY `book_reviews`.`id` DESC;";
   $stmt = $con->prepare($sql);
   $stmt->execute(['book_id' => $id]);
 
@@ -270,4 +270,33 @@ function adminOnly()
   if (!admin()) {
     redirect(route('home'));
   }
+}
+
+function timeAgo($datetime, $full = false) {
+  $now = new DateTime;
+  $ago = new DateTime($datetime);
+  $diff = $now->diff($ago);
+
+  $diff->w = floor($diff->d / 7);
+  $diff->d -= $diff->w * 7;
+
+  $string = array(
+      'y' => 'year',
+      'm' => 'month',
+      'w' => 'week',
+      'd' => 'day',
+      'h' => 'hour',
+      'i' => 'minute',
+      's' => 'second',
+  );
+  foreach ($string as $k => &$v) {
+      if ($diff->$k) {
+          $v = $diff->$k . ' ' . $v . ($diff->$k > 1 ? 's' : '');
+      } else {
+          unset($string[$k]);
+      }
+  }
+
+  if (!$full) $string = array_slice($string, 0, 1);
+  return $string ? implode(', ', $string) . ' ago' : 'just now';
 }

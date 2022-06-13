@@ -20,7 +20,7 @@ require_once __DIR__ . '/../autoload.php';
   <link rel="stylesheet" href="<?= asset("main.css") ?>">
 
   <!-- Font-Awesome CDN -->
-  <script src="https://kit.fontawesome.com/9c48d6723e.js" crossorigin="anonymous"></script>
+  <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
 </head>
 
 <body class="bg-body">
