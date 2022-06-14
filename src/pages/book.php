@@ -109,6 +109,9 @@ if (auth()) {
     </div>
 </div>
 <div class="bg-dark text-white p-4 text-center quoteDiv"></div>
+<div class="bg-black text-center text-white p-3">
+    <p class="m-0">Copyright @ Brainster</p>
+</div>
 
 
 <?php

@@ -2,6 +2,10 @@
 require_once __DIR__ . '/../layouts/header.php';
 ?>
 
+<div class="banner d-flex align-items-center justify-content-center">
+<div class="text-white opacity-100 p-4 text-center quoteDiv"></div>
+</div>
+
 <div class="my-4">
   <div class="row m-0">
     <div class="col-md-12 mb-4 mb-lg-0 col-lg-3">
@@ -86,8 +90,9 @@ require_once __DIR__ . '/../layouts/header.php';
     </div>
   </div>
 </div>
-<div class="bg-dark text-white p-4 text-center quoteDiv"></div>
-
+<div class="bg-black text-center text-white p-3">
+    <p class="m-0">Copyright @ Brainster</p>
+</div>
 
 <?php
 require_once __DIR__ . '/../layouts/footer.php';

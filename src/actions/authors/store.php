@@ -23,8 +23,8 @@ if (empty($_POST['bio'])) {
 } else if (strlen($_POST['bio']) < 20) {
     $_SESSION['val'] = ['bio' => 1, 'text' => 'Biography field must be minimum 20 characters.'];
     redirect(route('createAuthor'));
-} else if (strlen($_POST['bio']) > 512) {
-    $_SESSION['val'] = ['bio' => 1, 'text' => 'Biography field must be maximum 512 characters.'];
+} else if (strlen($_POST['bio']) > 1024) {
+    $_SESSION['val'] = ['bio' => 1, 'text' => 'Biography field must be maximum 1024 characters.'];
     redirect(route('createAuthor'));
 } else {
     input_data($_POST['bio']);

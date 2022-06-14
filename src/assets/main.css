@@ -78,3 +78,12 @@
   width: 2rem !important;
   height: 2rem !important;
 }
+
+.banner {
+  background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("../images/library.jpg");
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-blend-mode: darken;
+  height: 70vh;
+}
