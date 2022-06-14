@@ -17,8 +17,8 @@ while($row = $stmt->fetch()) {
     <div class='bg-warmyellow p-5 m-2 rounded position-relative'>
         <p class='text-dark m-0'>" . $row['note'] . "</p>
         <p class='text-dark m-2 mb-1 position-absolute bottom-0 end-0'>" . timeAgo($row['created_at']) . "</p>
-        <button class='btn btn-sm rounded-pill bg-primary position-absolute pos-minus20 editNote fw-bold' data-id='" . $row['id'] . "'>&#9998;</button>
-        <button class='btn btn-sm rounded-circle btn-danger position-absolute pos-minus10 deleteNote fw-bold' data-id='" . $row['id'] . "'>&#10008;</button>
+        <button class='btn btn-sm rounded-pill bg-primary position-absolute pos-minus20 editNote fw-bold perfCircle d-flex align-items-center justify-content-center' data-bs-toggle='modal' data-bs-target='#editModal' data-id='" . $row['id'] . "'>&#9998;</button>
+        <button class='btn btn-sm rounded-circle btn-danger position-absolute pos-minus10 deleteNote fw-bold perfCircle d-flex align-items-center justify-content-center' data-id='" . $row['id'] . "'>&#10008;</button>
     </div>
     ";
 }

@@ -1,3 +1,7 @@
+<div class="bg-black text-center text-white p-3">
+    <p class="m-0">Copyright @ Brainster</p>
+</div>
+
 <!-- jQuery library -->
 <script defer src="<?= asset('jquery-3.6.0.min.js') ?>" type='text/javascript'></script>
 

@@ -37,6 +37,25 @@ if (auth()) {
                 </form>
             </div>
             <div class="d-flex flex-wrap align-items-center justify-content-center mt-3" id="noteContainer"></div>
+            <div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="editModalLabel" aria-hidden="true">
+                <div class='modal-dialog modal-dialog-centered text-dark'>
+                    <div class='modal-content'>
+                        <form action='' method='POST'>
+                            <div class='modal-header'>
+                                <h5 class='modal-title' id='editModalLabel'>Edit Note</h5>
+                                <button type='button' class='btn-close' data-bs-dismiss='modal' aria-label='Close'></button>
+                            </div>
+                            <div class='modal-body'>
+                                
+                            </div>
+                            <div class='modal-footer'>
+                                <button type='button' class='btn btn-danger' data-bs-dismiss='modal'>Close</button>
+                                <button type='button' class='btn bg-warmyellow' data-bs-dismiss='modal' id='editNoteSubmit'>Save changes</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
         </div>
     <?php } ?>
     <div class="row bg-dark text-white mt-5 p-4">

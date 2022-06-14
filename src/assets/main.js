@@ -75,6 +75,42 @@ $(document).ready(function () {
     });
   });
 
+  // Category and Author filter
+  var $filterCheckboxes = $('input[type="checkbox"]');
+  var filterFunc = function () {
+    var selectedFilters = {};
+
+    $filterCheckboxes.filter(":checked").each(function () {
+      if (!selectedFilters.hasOwnProperty(this.name)) {
+        selectedFilters[this.name] = [];
+      }
+
+      selectedFilters[this.name].push(this.value);
+    });
+
+    var $filteredResults = $(".categoryDiv");
+
+    $.each(selectedFilters, function (name, filterValues) {
+      $filteredResults = $filteredResults.filter(function () {
+        var matched = false,
+          currentFilterValues = $(this).data("category").split(" ");
+
+        $.each(currentFilterValues, function (_, currentFilterValue) {
+          if ($.inArray(currentFilterValue, filterValues) != -1) {
+            matched = true;
+            return false;
+          }
+        });
+
+        return matched;
+      });
+    });
+
+    $(".categoryDiv").hide().filter($filteredResults).show();
+  };
+
+  $(document).on("change", "input[type='checkbox']", filterFunc);
+
   // Quote API
   fetch("http://api.quotable.io/random")
     .then((data) => {
@@ -145,6 +181,42 @@ $(document).ready(function () {
       success: function () {
         $("#note").after(
           "<div class='alert alert-success text-center mt-2 mb-0' id='noteValidation'>Deleted your note successfully!</div>"
+        );
+        setTimeout(function () {
+          $("#noteValidation").remove();
+        }, 2000);
+        $.ajax({
+          url: `${appUrl}actions/notes/show.php?id=${id}`,
+          method: "GET",
+          success: function (response) {
+            $("#noteContainer").html(response);
+          },
+        });
+      },
+    });
+  });
+
+  $(document).on("click", ".editNote", function (e) {
+    $.ajax({
+      url: `${appUrl}actions/notes/getNote.php?id=${$(this).attr("data-id")}`,
+      method: "GET",
+      success: function (response) {
+        $(".modal-body").html(response);
+      },
+    });
+  });
+
+  $(document).on("click", "#editNoteSubmit", function (e) {
+    $.ajax({
+      url: `${appUrl}actions/notes/update.php`,
+      method: "POST",
+      data: {
+        id: $("input[name=id]").val(),
+        note: $("textarea[name=note]").val(),
+      },
+      success: function () {
+        $("#note").after(
+          "<div class='alert alert-success text-center mt-2 mb-0' id='noteValidation'>Updated your note successfully!</div>"
         );
         setTimeout(function () {
           $("#noteValidation").remove();

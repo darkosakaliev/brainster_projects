@@ -15,18 +15,12 @@ require_once __DIR__ . '/../layouts/header.php';
           <div id="panelsStayOpen-collapseOne" class="accordion-collapse collapse show" data-bs-parent="#accordionExample">
             <div class="accordion-body">
               <div class="list-group">
-                <div class='form-check'>
-                  <input class='form-check-input category' type='checkbox' id='showAllCategories' checked>
-                  <label class='form-check-label pointerCursor' for='showAllCategories'>
-                    Show All
-                  </label>
-                </div>
                 <?php
                 $categories = getAllCategories($conn);
                 foreach ($categories as $category) {
                   echo "
                   <div class='form-check'>
-                  <input class='form-check-input category' type='checkbox' id='{$category['name']}'>
+                  <input class='form-check-input category' type='checkbox' id='{$category['name']}' value='{$category['name']}' name='fl-category'>
                   <label class='form-check-label pointerCursor' for='{$category['name']}'>
                   {$category['name']}
                   </label>
@@ -47,18 +41,12 @@ require_once __DIR__ . '/../layouts/header.php';
           <div id="panelsStayOpen-collapseTwo" class="accordion-collapse collapse show" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
             <div class="accordion-body">
               <div class="list-group">
-                <div class='form-check'>
-                  <input class='form-check-input' type='checkbox' id='showAllAuthors'>
-                  <label class='form-check-label pointerCursor' for='showAllAuthors'>
-                    Show All
-                  </label>
-                </div>
                 <?php
                 $authors = getAllAuthors($conn);
                 foreach ($authors as $author) {
                   echo "
                   <div class='form-check'>
-                  <input class='form-check-input author' type='checkbox' value='' id='" . preg_replace("/[\s]|[\.]/", "", $author['name']) . "'>
+                  <input class='form-check-input category' type='checkbox' id='" . preg_replace("/[\s]|[\.]/", "", $author['name']) . "' value='" . preg_replace("/[\s]|[\.]/", "", $author['name']) . "' name='fl-author'>
                   <label class='form-check-label pointerCursor' for='" . preg_replace("/[\s]|[\.]/", "", $author['name']) . "'>
                   {$author['name']}
                   </label>
@@ -79,7 +67,7 @@ require_once __DIR__ . '/../layouts/header.php';
         $books = getAllBooks($conn);
         foreach ($books as $book) {
           echo "
-              <div class='col-6 col-sm-4 col-lg-4 col-xl-3 mb-3 categoryDiv " . $book['category'] . " " . preg_replace("/[\s]|[\.]/", "", $book['author']) . "'>
+              <div class='col-6 col-sm-4 col-lg-4 col-xl-3 mb-3 categoryDiv' data-category='" . $book['category'] . " " . preg_replace("/[\s]|[\.]/", "", $book['author']) . "'>
                 <a href='" . route('book', $book['id']) . "'>
                   <div class='card h-100 border-0 rounded'>
                     <img class='card-img-top img-fluid rounded' src='{$book['cover']}' alt='Card image cap'>
