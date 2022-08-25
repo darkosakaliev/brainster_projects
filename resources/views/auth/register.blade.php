@@ -1,59 +1,64 @@
 <x-guest-layout>
-    <x-auth-card>
-        <x-slot name="logo">
-            <a href="/">
-                <x-application-logo class="w-20 h-20 fill-current text-gray-500" />
-            </a>
-        </x-slot>
+    <div class="bg-img register-bg p-12">
 
-        <!-- Validation Errors -->
-        <x-auth-validation-errors class="mb-4" :errors="$errors" />
 
-        <form method="POST" action="{{ route('register') }}">
-            @csrf
+        <span class="text-5xl font-semibold">Register</span>
+        <div class="w-2/6 mt-10">
+            <form class="flex flex-wrap" method="POST" action="{{ route('register') }}">
+                @csrf
 
-            <!-- Name -->
-            <div>
-                <x-label for="name" :value="__('Name')" />
+                <!-- Name -->
+                <div class="mr-16">
+                    <x-input id="name" class="block mt-1 w-full p-0 font-semibold" type="text" name="name"
+                        :value="old('name')" autofocus placeholder="Name" />
+                    @error('name')
+                        <div class="text-red-600 text-xs mt-1">{{ $message }}</div>
+                    @enderror
+                </div>
 
-                <x-input id="name" class="block mt-1 w-full" type="text" name="name" :value="old('name')" required autofocus />
-            </div>
+                <!-- Surname -->
+                <div>
+                    <x-input id="surname" class="block mt-1 w-full p-0 font-semibold" type="text" name="surname"
+                        :value="old('surname')" autofocus placeholder="Surname" />
+                    @error('surname')
+                        <div class="text-red-600 text-xs mt-1">{{ $message }}</div>
+                    @enderror
+                </div>
 
-            <!-- Email Address -->
-            <div class="mt-4">
-                <x-label for="email" :value="__('Email')" />
+                <!-- Email Address -->
+                <div class="mt-2 mr-16">
+                    <x-input id="email" class="block mt-1 w-full p-0 font-semibold" type="email" name="email"
+                        :value="old('email')" placeholder="Email" />
+                    @error('email')
+                        <div class="text-red-600 text-xs mt-1">{{ $message }}</div>
+                    @enderror
+                </div>
 
-                <x-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required />
-            </div>
+                <!-- Password -->
+                <div class="mt-2">
+                    <x-input id="password" class="block mt-1 w-full p-0 font-semibold" type="password" name="password"
+                        autocomplete="new-password" placeholder="Password" />
+                    @error('password')
+                        <div class="text-red-600 text-xs mt-1">{{ $message }}</div>
+                    @enderror
+                </div>
 
-            <!-- Password -->
-            <div class="mt-4">
-                <x-label for="password" :value="__('Password')" />
+                <!-- Biography -->
+                <div class="mt-10">
+                    <label for="bio" class="font-semibold custom-gray">Biography</label>
+                    <textarea class="bg-transparent border-0 resize-none focus:ring-0 p-0 mt-2 font-semibold custom-gray" name="bio"
+                        id="bio" cols="50" rows="7" placeholder="Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.">{{ old('bio') }}</textarea>
+                    @error('bio')
+                        <div class="text-red-600 text-xs mt-1">{{ $message }}</div>
+                    @enderror
+                </div>
 
-                <x-input id="password" class="block mt-1 w-full"
-                                type="password"
-                                name="password"
-                                required autocomplete="new-password" />
-            </div>
-
-            <!-- Confirm Password -->
-            <div class="mt-4">
-                <x-label for="password_confirmation" :value="__('Confirm Password')" />
-
-                <x-input id="password_confirmation" class="block mt-1 w-full"
-                                type="password"
-                                name="password_confirmation" required />
-            </div>
-
-            <div class="flex items-center justify-end mt-4">
-                <a class="underline text-sm text-gray-600 hover:text-gray-900" href="{{ route('login') }}">
-                    {{ __('Already registered?') }}
-                </a>
-
-                <x-button class="ml-4">
+                <x-button class="text-2xl rounded-xl text-white px-20 py-4 mt-2 custom-bg-green">
                     {{ __('Register') }}
                 </x-button>
-            </div>
-        </form>
-    </x-auth-card>
+                <span class="mt-2">Already have an account? Login <a class="underline"
+                        href="{{ route('login') }}">here!</a></span>
+            </form>
+        </div>
+    </div>
 </x-guest-layout>

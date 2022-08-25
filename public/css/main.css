@@ -1,0 +1,58 @@
+* {
+    font-family: 'Montserrat', sans-serif;
+}
+
+.custom-bg-green {
+    background-color: #48695c;
+}
+
+.custom-orange {
+    color: #dd7f1e;
+}
+
+.custom-bg-orange {
+    background-color: #dd7f1e;
+}
+
+.border-custom-orange {
+    border-color: #dd7f1e;
+}
+
+.custom-gray {
+    color: #949d99;
+}
+
+.custom-lightgray {
+    color: #f6f6f6;
+}
+
+.custom-red {
+    color: #ff5757;
+}
+
+.bg-img {
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 100vh;
+    width: 100%;
+}
+
+.login-bg {
+    background-image: url('../bg-images/1.jpg');
+}
+
+.register-bg {
+    background-image: url('../bg-images/2.jpg');
+}
+
+.homepage-bg {
+    background-image: url('../bg-images/3.jpg');
+}
+
+.dashboard-bg {
+    background-image: url('../bg-images/4.jpg');
+}
+
+.applications-bg {
+    background-image: url('../bg-images/5.jpg');
+}
