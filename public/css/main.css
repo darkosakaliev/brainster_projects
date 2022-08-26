@@ -1,6 +1,10 @@
 * {
-    font-family: 'Montserrat', sans-serif;
+    font-family: "Montserrat", sans-serif;
 }
+
+*::-webkit-scrollbar-thumb {
+    background: #dd7f1e !important;
+  }
 
 .custom-bg-green {
     background-color: #48695c;
@@ -38,21 +42,21 @@
 }
 
 .login-bg {
-    background-image: url('../bg-images/1.jpg');
+    background-image: url("../bg-images/1.jpg");
 }
 
 .register-bg {
-    background-image: url('../bg-images/2.jpg');
+    background-image: url("../bg-images/2.jpg");
 }
 
 .homepage-bg {
-    background-image: url('../bg-images/3.jpg');
+    background-image: url("../bg-images/3.jpg");
 }
 
-.dashboard-bg {
-    background-image: url('../bg-images/4.jpg');
+.projects-bg {
+    background-image: url("../bg-images/4.jpg");
 }
 
 .applications-bg {
-    background-image: url('../bg-images/5.jpg');
+    background-image: url("../bg-images/5.jpg");
 }

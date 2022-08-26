@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\ApplicationController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,8 +15,18 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('dashboard');
-})->middleware(['auth'])->name('dashboard');
+Route::middleware(['auth'])->group(function () {
+    Route::get('/', function () {
+        return view('index');
+    })->name('home');
+
+    Route::get('/projects', function () {
+        return view('projects.index');
+    })->name('projects');
+
+    Route::get('/profile', [UserController::class, 'edit'])->name('profile');
+
+    Route::get('/applications', [ApplicationController::class, 'index'])->name('applications');
+});
 
 require __DIR__.'/auth.php';
