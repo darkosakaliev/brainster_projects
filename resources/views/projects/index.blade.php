@@ -1,11 +1,7 @@
 <x-app-layout>
     <div class="py-12 bg-img projects-bg">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
-                <div class="p-6 bg-white border-b text-center border-gray-200">
-                    Welcome!
-                </div>
-            </div>
-        </div>
+        @if (auth()->user()->is_complete == 0)
+        <x-incomplete />
+        @endif
     </div>
 </x-app-layout>
