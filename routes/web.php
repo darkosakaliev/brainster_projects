@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ApplicationController;
+use App\Http\Controllers\ProjectController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
@@ -20,13 +21,17 @@ Route::middleware(['auth'])->group(function () {
         return view('index');
     })->name('home');
 
-    Route::get('/projects', function () {
-        return view('projects.index');
-    })->name('projects');
+    Route::get('/projects', [ProjectController::class, 'index'])->name('projects');
+
+    Route::get('/applications', [ApplicationController::class, 'index'])->name('applications');
 
     Route::get('/profile', [UserController::class, 'edit'])->name('profile');
 
-    Route::get('/applications', [ApplicationController::class, 'index'])->name('applications');
+    Route::put('/profile', [UserController::class, 'update'])->name('profile.update');
+
+    Route::middleware(['completeProfile'])->group(function () {
+
+    });
 });
 
 require __DIR__.'/auth.php';
