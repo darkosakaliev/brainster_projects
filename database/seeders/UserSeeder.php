@@ -22,6 +22,8 @@ class UserSeeder extends Seeder
             'name' => 'John',
             'surname' => 'Doe',
             'email' => 'johndoe@example.com',
+            'bio' => 'John Doe Lorem Ipsum Dolor Sit Amet.',
+            'profile_image' => '1661612532-JohnDoe.jpg',
             'password' => Hash::make('John1234'),
             'academy_id' => 1
         ]);
@@ -30,6 +32,8 @@ class UserSeeder extends Seeder
             'name' => 'Jane',
             'surname' => 'Doe',
             'email' => 'janedoe@example.com',
+            'bio' => 'Jane Doe Lorem Ipsum Dolor Sit Amet.',
+            'profile_image' => '1661625293-JaneDoe.jpg',
             'password' => Hash::make('Jane1234'),
             'academy_id' => 2
         ]);

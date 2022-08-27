@@ -50,10 +50,6 @@ class User extends Authenticatable
         return $this->belongsToMany(Skill::class, 'user_skill');
     }
 
-    public function academy() {
-        return $this->hasOne(Academy::class);
-    }
-
     public function applications() {
         return $this->hasMany(Application::class);
     }
