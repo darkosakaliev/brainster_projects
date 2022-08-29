@@ -16,13 +16,13 @@ class AcademySeeder extends Seeder
     public function run()
     {
         Academy::insert([
-            ['name' => 'Backend Development'],
-            ['name' => 'Frontend Development'],
-            ['name' => 'Marketing'],
-            ['name' => 'Data Science'],
-            ['name' => 'Design'],
-            ['name' => 'QA'],
-            ['name' => 'UX/UI']
+            ['name' => 'Backend Development', 'profession' => 'Backend Dev'],
+            ['name' => 'Frontend Development', 'profession' => 'Frontend Dev'],
+            ['name' => 'Marketing', 'profession' => 'Marketer'],
+            ['name' => 'Data Science', 'profession' => 'Data Scientist'],
+            ['name' => 'Design', 'profession' => 'Designer'],
+            ['name' => 'QA', 'profession' => 'QA Engineer'],
+            ['name' => 'UX/UI', 'profession' => 'UX/UI Designer']
         ]);
     }
 }

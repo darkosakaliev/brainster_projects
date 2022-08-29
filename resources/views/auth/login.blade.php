@@ -1,5 +1,5 @@
 <x-guest-layout>
-    <div class="login-bg bg-img flex-wrap md:flex justify-center items-center px-20">
+    <div class="login-bg bg-img-guest flex-wrap md:flex justify-center items-center px-20">
         <div class="w-full md:w-8/12 self-start">
             <div class="w-full h-80">
                 <x-big-logo />
