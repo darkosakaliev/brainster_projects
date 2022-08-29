@@ -17,8 +17,8 @@ class ApplicationSeeder extends Seeder
     public function run()
     {
         Application::insert([
-            'description' => 'John Doe Lorem ipsum dolor',
-            'user_id' => 1,
+            'description' => 'Mark Doe Lorem ipsum dolor',
+            'user_id' => 3,
             'project_id' => 1
         ]);
 

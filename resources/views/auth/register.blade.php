@@ -1,5 +1,5 @@
 <x-guest-layout>
-    <div class="bg-img register-bg p-12">
+    <div class="bg-img-guest register-bg p-12">
 
 
         <span class="text-5xl font-semibold">Register</span>

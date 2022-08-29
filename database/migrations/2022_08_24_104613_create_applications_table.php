@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('applications', function (Blueprint $table) {
             $table->id();
-            $table->string('description');
+            $table->text('description');
             $table->foreignId('user_id')->constrained('users');
             $table->foreignId('project_id')->constrained('projects');
         });

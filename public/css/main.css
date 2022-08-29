@@ -62,6 +62,14 @@
     background-repeat: no-repeat;
     background-size: cover;
     background-attachment: scroll;
+    height: calc(100vh - 60px);
+    width: 100%;
+}
+
+.bg-img-guest {
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: scroll;
     height: 100vh;
     width: 100%;
 }
