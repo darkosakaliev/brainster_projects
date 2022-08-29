@@ -38,8 +38,18 @@ class UserSeeder extends Seeder
             'academy_id' => 2
         ]);
 
+        User::create([
+            'name' => 'Mark',
+            'surname' => 'Doe',
+            'email' => 'markdoe@example.com',
+            'bio' => 'Mark Doe Lorem Ipsum Dolor Sit Amet.',
+            'profile_image' => '1661625293-JaneDoe.jpg',
+            'password' => Hash::make('Mark1234'),
+            'academy_id' => 5
+        ]);
+
         foreach (User::all() as $user) {
-            $skills = Skill::inRandomOrder()->take(rand(5, 10))->pluck('id');
+            $skills = Skill::inRandomOrder()->take(rand(6, 10))->pluck('id');
             $user->skills()->attach($skills);
         }
     }

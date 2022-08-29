@@ -19,15 +19,15 @@
     <link rel="stylesheet" href="{{ asset('css/main.css') }}">
 </head>
 
-<body class="font-sans antialiased">
-    <div class="min-h-screen">
+<body>
         @include('layouts.navigation')
 
         <!-- Page Content -->
         <main>
             {{ $slot }}
         </main>
-    </div>
-</body>
+        <script src="https://code.jquery.com/jquery-3.6.1.min.js" integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
+        <script src="{{ asset('js/main.js') }}"></script>
+    </body>
 
 </html>

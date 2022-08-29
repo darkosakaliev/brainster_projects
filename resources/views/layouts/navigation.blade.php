@@ -15,15 +15,15 @@
             <!-- Settings Dropdown -->
             <div class="hidden sm:flex sm:items-center sm:ml-6">
                 <!-- Navigation Links -->
-                <div class="hidden space-x-8 sm:-my-px md:flex sm:mr-10">
-                    @if (request()->routeIs(['projects', 'profile', 'applications']))
-                        <x-nav-link :href="route('projects')" :active="request()->routeIs('projects')">
+                <div class="hidden space-x-2 sm:-my-px md:flex sm:mr-10">
+                    @if (request()->routeIs(['projects*', 'profile*', 'applications*']))
+                        <x-nav-link :href="route('projects')" :active="request()->routeIs('projects*')">
                             {{ __('My Projects') }}
                         </x-nav-link>
-                        <x-nav-link :href="route('applications')" :active="request()->routeIs('applications')">
+                        <x-nav-link :href="route('applications')" :active="request()->routeIs('applications*')">
                             {{ __('My Applications') }}
                         </x-nav-link>
-                        <x-nav-link :href="route('profile')" :active="request()->routeIs('profile')">
+                        <x-nav-link :href="route('profile')" :active="request()->routeIs('profile*')">
                             {{ __('My Profile') }}
                         </x-nav-link>
                     @endif
