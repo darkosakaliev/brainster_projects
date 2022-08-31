@@ -14,14 +14,10 @@ class HomeController extends Controller
         return view('index');
     }
 
-    public function projects() {
-        $projects = Project::where('is_assembled', '=', 0)->get();
+    public function projects(Request $request) {
+        $projects = Project::where('is_assembled', 0)->simplePaginate(8);
 
-        $output = '';
-
-        foreach($projects as $project) {
-            $output .= View::make('components.project-card')->with('project', $project)->render();
-        }
+        $output = View::make('components.project-card')->with('projects', $projects)->render();
 
         if(count($projects) > 0) {
             echo $output;
@@ -33,16 +29,12 @@ class HomeController extends Controller
     public function academies() {
         $academies = Academy::all();
 
-        $output = '';
-
-        foreach($academies as $academy) {
-            $output .= View::make('components.academy-card')->with('academy', $academy)->render();
-        }
+        $output = View::make('components.academy-card')->with('academies', $academies)->render();
 
         if(count($academies) > 0) {
             echo $output;
         } else {
-            echo '<div class="text-semibold text-2xl text-center mt-6">There are no filters at the moment.</div>';
+            echo '<div class="text-semibold text-2xl text-left mt-6">There are no filters at the moment.</div>';
         }
     }
 }

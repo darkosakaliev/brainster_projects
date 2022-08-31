@@ -6,13 +6,7 @@
         <div class="flex flex-col lg:flex-row">
             <div class="basis-1/4">
                 <p class="font-semibold">In what field can you be amazing?</p>
-                <div id="academy-list" class="flex flex-wrap mt-20">
-                    <input class="hidden" type="radio" name="academy_id" id="all" value="all" checked>
-                    <label role="button" for="all"
-                        class="w-32 h-24 mt-1 mr-1 text-center text-xs grid place-items-center font-semibold bg-white rounded-xl">
-                        All
-                    </label>
-                </div>
+                <div id="academy-list" class="flex flex-wrap mt-20"></div>
             </div>
             <div class="basis-3/4">
                 <div class="flex justify-end">
