@@ -1,3 +1,4 @@
+@foreach($projects as $project)
 <div class="bg-white shadow-sm rounded-2xl mt-20">
     <div class="flex justify-between rounded-2xl bg-white border-b text-center border-gray-200 relative">
         <div class="flex flex-col justify-center items-center basis-2/6">
@@ -32,3 +33,5 @@
         </div>
     </div>
 </div>
+@endforeach
+<div class="mt-4">{{ $projects->links() }}</div>

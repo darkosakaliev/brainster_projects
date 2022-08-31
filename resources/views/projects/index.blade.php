@@ -14,7 +14,7 @@
             </div>
             <div class="max-w-5xl mx-auto sm:px-6 lg:px-8">
                 @foreach ($projects as $project)
-                    <div id="projectDiv" class="bg-white shadow-sm rounded-2xl mt-20 relative">
+                    <div class="projectDiv bg-white shadow-sm rounded-2xl mt-20 relative">
                         <div
                             class="flex justify-between rounded-2xl bg-white border-b text-center border-gray-200 relative">
                             <div class="flex flex-col justify-center items-center basis-2/6">
@@ -38,8 +38,7 @@
                             </div>
                             <div class="flex basis-4/6 flex-col px-6 py-4 justify-start items-start relative">
                                 <p class="font-semibold mb-2">{{ $project->name }}</p>
-                                <p class="text-justify text-sm leading-5">{{ $project->description }}</p>
-                                <a class="underline custom-orange self-end" href="">show more</a>
+                                <p class="show-read-more text-justify text-sm leading-5">{{ $project->description }}</p>
                                 <div
                                     class="flex flex-col justify-center items-center custom-bg-green px-2 py-3 rounded-full absolute -top-8 right-8">
                                     <span
@@ -48,7 +47,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div id="buttonWrapper" class="hidden pl-4 flex-col space-y-2 absolute -right-12 top-20">
+                        <div class="buttonWrapper hidden pl-4 flex-col space-y-2 absolute -right-12 top-20">
                             <form action="{{ route('projects.edit', $project->id) }}"
                                 method="GET">
                                 @csrf

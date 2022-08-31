@@ -25,7 +25,8 @@ class UserSeeder extends Seeder
             'bio' => 'John Doe Lorem Ipsum Dolor Sit Amet.',
             'profile_image' => '1661612532-JohnDoe.jpg',
             'password' => Hash::make('John1234'),
-            'academy_id' => 1
+            'academy_id' => 1,
+            'is_complete' => 1
         ]);
 
         User::create([
@@ -35,7 +36,8 @@ class UserSeeder extends Seeder
             'bio' => 'Jane Doe Lorem Ipsum Dolor Sit Amet.',
             'profile_image' => '1661625293-JaneDoe.jpg',
             'password' => Hash::make('Jane1234'),
-            'academy_id' => 2
+            'academy_id' => 2,
+            'is_complete' => 1
         ]);
 
         User::create([
@@ -45,7 +47,8 @@ class UserSeeder extends Seeder
             'bio' => 'Mark Doe Lorem Ipsum Dolor Sit Amet.',
             'profile_image' => '1661625293-JaneDoe.jpg',
             'password' => Hash::make('Mark1234'),
-            'academy_id' => 5
+            'academy_id' => 5,
+            'is_complete' => 1
         ]);
 
         foreach (User::all() as $user) {
