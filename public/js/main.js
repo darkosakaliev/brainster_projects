@@ -8,18 +8,41 @@ $(document).ready(function () {
     $.ajax({
         url: "/projects/all",
         method: "POST",
-        success: function (data) {
-            $("#project-list").html(data);
+        success: function (response) {
+            $("#project-list").html(response);
         },
     });
 
     $.ajax({
         url: "/academies/all",
         method: "POST",
-        success: function (data) {
-            $("#academy-list").append(data);
+        success: function (response) {
+            $("#academy-list").html(response);
         },
     });
+
+    // Pagination
+    $(document).on("click", "a[rel*='next'], a[rel*='prev']", function (event) {
+        event.preventDefault();
+
+        var page = $(this).attr("href").split("page=")[1];
+
+        getData(page);
+    });
+
+    function getData(page) {
+        $.ajax({
+            url: "/projects/all?page=" + page,
+            method: "POST",
+        })
+            .done(function (data) {
+                console.log(data);
+                $("#project-list").empty().html(data);
+            })
+            .fail(function (jqXHR, ajaxOptions, thrownError) {
+                alert("No response from server");
+            });
+    }
 
     $(document).ajaxStop(function () {
         // Show More
@@ -45,27 +68,27 @@ $(document).ready(function () {
             $(this).siblings(".more-text").contents().unwrap();
             $(this).remove();
         });
-    });
 
-    // Modal
-    $(document).on("click", ".openModal", function () {
-        $("#modal").removeClass("hidden");
-        $("#overlay").removeClass("hidden");
-        let id = $(this).data("id");
-        console.log(id);
-    });
+        // Modal
+        $(".openModal").on("click", function () {
+            $("#modal").removeClass("hidden");
+            $("#overlay").removeClass("hidden");
+            let id = $(this).data("id");
+            console.log(id);
+        });
 
-    $("#closeModal, #overlay").on("click", function () {
-        $("#modal").addClass("hidden");
-        $("#overlay").addClass("hidden");
-    });
+        $("#closeModal, #overlay").on("click", function () {
+            $("#modal").addClass("hidden");
+            $("#overlay").addClass("hidden");
+        });
 
-    // Project Buttons
-    $("#projectDiv").on("mouseenter", function () {
-        $("#buttonWrapper").removeClass("hidden").addClass("flex");
-    });
+        // Project Buttons
+        $(".projectDiv").on("mouseenter", function () {
+            $(this).find(".buttonWrapper").removeClass("hidden").addClass("flex");
+        });
 
-    $("#projectDiv").on("mouseleave", function () {
-        $("#buttonWrapper").removeClass("flex").addClass("hidden");
+        $(".projectDiv").on("mouseleave", function () {
+            $(this).find(".buttonWrapper").removeClass("flex").addClass("hidden");
+        });
     });
 });
