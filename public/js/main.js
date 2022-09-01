@@ -5,22 +5,27 @@ $(document).ready(function () {
         },
     });
 
-
-
     getAcademyRecords();
 
     $(document).on("change", "#academy-list input[type=checkbox]", function () {
-
-        if($("#academy-list input[type=checkbox]").is(':checked')) {
+        if ($("#academy-list input[type=checkbox]").is(":checked")) {
             $("#all").prop("checked", false);
-        } else if (!$("#academy-list input[type=checkbox]").not('#all').is(':checked')) {
+        } else if (
+            !$("#academy-list input[type=checkbox]").not("#all").is(":checked")
+        ) {
             $("#all").prop("checked", true);
-        } else if ($("#academy-list input[type=checkbox]").is(':checked') && $("#all").is(':checked')) {
+        } else if (
+            $("#academy-list input[type=checkbox]").is(":checked") &&
+            $("#all").is(":checked")
+        ) {
             $("#academy-list input[type=checkbox]".prop("checked", false));
         }
-        let checked = $.map($("#academy-list input:checkbox:checked"), function (e) {
-            return e.value;
-        });
+        let checked = $.map(
+            $("#academy-list input:checkbox:checked"),
+            function (e) {
+                return e.value;
+            }
+        );
         data = {
             academy: checked,
         };
@@ -34,9 +39,12 @@ $(document).ready(function () {
             method: "POST",
             success: function (response) {
                 $("#academy-list").html(response);
-                let checked = $.map($("#academy-list input:checkbox:checked"), function (e) {
-                    return e.value;
-                });
+                let checked = $.map(
+                    $("#academy-list input:checkbox:checked"),
+                    function (e) {
+                        return e.value;
+                    }
+                );
                 data = {
                     academy: checked,
                 };
@@ -58,22 +66,26 @@ $(document).ready(function () {
     }
 
     function getPaginationData(request) {
-        $(document).on("click", "a[rel*='next'], a[rel*='prev']", function (event) {
-            event.preventDefault();
-            event.stopPropagation();
-            event.stopImmediatePropagation();
+        $(document).on(
+            "click",
+            "a[rel*='next'], a[rel*='prev']",
+            function (event) {
+                event.preventDefault();
+                event.stopPropagation();
+                event.stopImmediatePropagation();
 
-            var page = $(this).attr("href").split("page=")[1];
+                var page = $(this).attr("href").split("page=")[1];
 
-            $.ajax({
-                url: "/projects/all?page=" + page,
-                data: request,
-                method: "POST",
-                success: function(data) {
-                    $("#project-list").empty().html(data);
-                }
-            });
-        });
+                $.ajax({
+                    url: "/projects/all?page=" + page,
+                    data: request,
+                    method: "POST",
+                    success: function (data) {
+                        $("#project-list").empty().html(data);
+                    },
+                });
+            }
+        );
     }
 });
 
@@ -103,8 +115,45 @@ $(document).ajaxStop(function () {
     $(".openModal").on("click", function () {
         $("#modal").removeClass("hidden");
         $("#overlay").removeClass("hidden");
-        let id = $(this).data("id");
-        console.log(id);
+        var id = $(this).data("id");
+        $(document).on("click", "#sendModal", function () {
+            request = {
+                description: $("#description").val(),
+                project_id: id,
+            };
+            $.ajax({
+                url: "/applications/apply",
+                method: "POST",
+                data: request,
+                success: function (response) {
+                    $("#modal").addClass("hidden");
+                    $("#overlay").addClass("hidden");
+                    Swal.fire(
+                        "Application Sent!",
+                        "Application sent successfully!",
+                        "success"
+                    );
+                    $(`button[data-id=${id}]`).prop("disabled", true);
+                    applicantCount = $(`button[data-id=${id}]`)
+                        .next()
+                        .children(".applicantCount");
+                    applicantCount.text(parseInt(applicantCount.text()) + 1);
+                    $("#description").val("");
+                },
+                error: function (xhr) {
+                    let errors = "";
+                    $.each(xhr.responseJSON.errors, function (key, item) {
+                        errors +=
+                            "<span class='text-red-500'>" + item + "</span>";
+                    });
+                    $("#errors").html(errors);
+                    setTimeout(() => {
+                        $("#errors").html('');
+                    }, 2000);
+                    $("#description").val("");
+                },
+            });
+        });
     });
 
     $("#closeModal, #overlay").on("click", function () {
