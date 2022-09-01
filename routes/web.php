@@ -45,6 +45,8 @@ Route::middleware(['auth'])->group(function () {
 
         Route::delete('projects/{id}', [ProjectController::class, 'destroy'])->name('projects.destroy');
 
+        Route::post('/applications/apply', [ApplicationController::class, 'apply'])->name('applications.apply');
+
     });
 });
 
