@@ -7,25 +7,9 @@ $(document).ready(function () {
 
     getAcademyRecords();
 
-    $(document).on("change", "#academy-list input[type=checkbox]", function () {
-        if ($("#academy-list input[type=checkbox]").is(":checked")) {
-            $("#all").prop("checked", false);
-        } else if (
-            !$("#academy-list input[type=checkbox]").not("#all").is(":checked")
-        ) {
-            $("#all").prop("checked", true);
-        } else if (
-            $("#academy-list input[type=checkbox]").is(":checked") &&
-            $("#all").is(":checked")
-        ) {
-            $("#academy-list input[type=checkbox]".prop("checked", false));
-        }
-        let checked = $.map(
-            $("#academy-list input:checkbox:checked"),
-            function (e) {
-                return e.value;
-            }
-        );
+    $(document).on("change", "#academy-list input[type=radio]", function () {
+        let checked = $("#academy-list input:radio:checked").val();
+        console.log(checked);
         data = {
             academy: checked,
         };
@@ -39,12 +23,7 @@ $(document).ready(function () {
             method: "POST",
             success: function (response) {
                 $("#academy-list").html(response);
-                let checked = $.map(
-                    $("#academy-list input:checkbox:checked"),
-                    function (e) {
-                        return e.value;
-                    }
-                );
+                let checked = $("#academy-list input:radio:checked").val();
                 data = {
                     academy: checked,
                 };
@@ -116,7 +95,7 @@ $(document).ajaxStop(function () {
         $("#modal").removeClass("hidden");
         $("#overlay").removeClass("hidden");
         var id = $(this).data("id");
-        $(document).on("click", "#sendModal", function () {
+        $("#sendModal").unbind('click').on("click", function () {
             request = {
                 description: $("#description").val(),
                 project_id: id,
@@ -168,5 +147,23 @@ $(document).ajaxStop(function () {
 
     $(".projectDiv").on("mouseleave", function () {
         $(this).find(".buttonWrapper").removeClass("flex").addClass("hidden");
+    });
+
+    $('.cancelButton').unbind('click').on("click", function(e) {
+        e.preventDefault();
+        let form = $(this).parents('form');
+        Swal.fire({
+            title: 'Are you sure?',
+            text: "You won't be able to revert this!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes, cancel it!'
+          }).then((result) => {
+            if (result.isConfirmed) {
+              form.submit();
+            }
+          })
     });
 });
