@@ -77,7 +77,7 @@ class ProjectSeeder extends Seeder
         ]);
 
         foreach(Project::all() as $project) {
-            $academies = Academy::inRandomOrder()->take(rand(3,4))->pluck('id');
+            $academies = Academy::inRandomOrder()->take(rand(1, 2))->pluck('id');
             $project->academies()->attach($academies);
         };
     }

@@ -47,6 +47,8 @@ Route::middleware(['auth'])->group(function () {
 
         Route::post('/applications/apply', [ApplicationController::class, 'apply'])->name('applications.apply');
 
+        Route::delete('/applications/{id}/cancel', [ApplicationController::class, 'cancel'])->name('applications.cancel');
+
     });
 });
 

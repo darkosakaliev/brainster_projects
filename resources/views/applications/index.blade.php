@@ -6,6 +6,11 @@
         <div class="ml-12">
             <p class="text-2xl font-semibold mb-4">My Applications</p>
         </div>
+        @if(Session::get('message'))
+        <div class="max-w-4xl mx-auto sm:px-6 lg:px-8 py-4 custom-bg-green text-center text-white rounded-md">
+            <p>{{ Session::get('message') }}</p>
+        </div>
+        @endif
         <div class="max-w-5xl mx-auto sm:px-6 lg:px-8">
             @foreach ($applications as $application)
                 <div class="projectDiv bg-white shadow-sm rounded-2xl mt-20 relative">
@@ -55,11 +60,11 @@
                     </div>
                     @if($application->is_accepted == null || $application->is_accepted == 0)
                     <div class="buttonWrapper hidden pl-10 pt-5 pb-5 flex-col space-y-2 absolute -right-12 top-24">
-                        <form action=""
+                        <form action="{{ route('applications.cancel', $application->id) }}"
                             method="POST">
                             @csrf
                             @method('DELETE')
-                            <button type="submit" class="w-5 h-5 flex flex-col justify-center items-center">
+                            <button type="submit" class="cancelButton w-5 h-5 flex flex-col justify-center items-center">
                                 <img src="{{ asset('ikons/2.png') }}" alt="">
                                 <span>Cancel</span>
                             </button>
