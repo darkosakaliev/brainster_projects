@@ -18,6 +18,7 @@ return new class extends Migration
             $table->text('description');
             $table->foreignId('user_id')->constrained('users');
             $table->foreignId('project_id')->constrained('projects');
+            $table->boolean('is_accepted')->nullable();
         });
     }
 

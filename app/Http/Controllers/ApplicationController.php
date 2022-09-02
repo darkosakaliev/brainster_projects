@@ -9,7 +9,8 @@ class ApplicationController extends Controller
 {
     public function index()
     {
-        return view('applications.index');
+        $applications = Application::where('user_id', auth()->user()->id)->with('project', 'project.user', 'project.academies', 'project.applicants')->orderBy('id', 'DESC')->get();
+        return view('applications.index', compact('applications'));
     }
 
     public function apply(Request $request)
