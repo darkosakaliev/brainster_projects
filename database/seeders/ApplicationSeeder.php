@@ -31,7 +31,7 @@ class ApplicationSeeder extends Seeder
         Application::insert([
             'description' => 'John Doe Lorem ipsum dolor',
             'user_id' => 1,
-            'project_id' => 2
+            'project_id' => 7
         ]);
     }
 }
