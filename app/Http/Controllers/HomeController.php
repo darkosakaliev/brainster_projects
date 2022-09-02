@@ -15,10 +15,11 @@ class HomeController extends Controller
     }
 
     public function projects(Request $request) {
-        if($request->academy == ['true']) {
-            $request->academy = true;
+        if($request->academy == 'true') {
+            $projects = Project::where('is_assembled', 0)->simplePaginate(8);
+        } else {
+            $projects = Project::whereRelation('academies', 'academy_id', $request->academy)->where('is_assembled', 0)->simplePaginate(8);
         }
-        $projects = Project::whereRelation('academies', 'academy_id', $request->academy)->where('is_assembled', 0)->simplePaginate(8);
 
         $output = View::make('components.project-card')->with('projects', $projects)->render();
 

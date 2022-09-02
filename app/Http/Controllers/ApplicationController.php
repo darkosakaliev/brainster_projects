@@ -30,4 +30,12 @@ class ApplicationController extends Controller
             'success' => true,
         ]);
     }
+
+    public function cancel($id) {
+        $application = Application::find($id);
+
+        $application->delete();
+
+        return redirect()->route('applications')->with(['message' => 'Application successfully canceled!']);
+    }
 }
