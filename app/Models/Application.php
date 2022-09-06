@@ -9,6 +9,8 @@ class Application extends Model
 {
     use HasFactory;
 
+    public $timestamps = false;
+
     protected $fillable = [
         'description',
         'project_id',

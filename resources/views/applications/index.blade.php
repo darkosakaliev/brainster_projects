@@ -38,7 +38,6 @@
                         <div class="flex basis-4/6 flex-col px-6 py-4 justify-start items-start relative">
                             <p class="font-semibold mb-2">{{ $application->project->name }}</p>
                             <p class="show-read-more text-justify text-sm leading-5">{{ $application->project->description }}</p>
-                            <p>{{ $application->is_accepted }}</p>
                             @if($application->is_accepted === 0)
                             <div class="mt-auto flex">
                                 <p class="mr-4 text-xl custom-red">Application Denied</p>

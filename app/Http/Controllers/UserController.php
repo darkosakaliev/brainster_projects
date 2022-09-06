@@ -19,7 +19,7 @@ class UserController extends Controller
     }
 
     public function update(UpdateUserRequest $request) {
-        $user = Auth::user();
+        $user = User::find(auth()->user()->id);
         if($request->profile_image) {
             $oldImageName = auth()->user()->profile_image;
             $newImageName = time() . '-' . $request->name . $request->surname . '.' . $request->profile_image->extension();
@@ -38,5 +38,10 @@ class UserController extends Controller
         $user->save();
 
         return redirect()->route('profile');
+    }
+
+    public function show($id) {
+        $user = User::find($id);
+        return view('users.show', compact('user'));
     }
 }

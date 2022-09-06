@@ -9,7 +9,6 @@ $(document).ready(function () {
 
     $(document).on("change", "#academy-list input[type=radio]", function () {
         let checked = $("#academy-list input:radio:checked").val();
-        console.log(checked);
         data = {
             academy: checked,
         };
@@ -95,44 +94,50 @@ $(document).ajaxStop(function () {
         $("#modal").removeClass("hidden");
         $("#overlay").removeClass("hidden");
         var id = $(this).data("id");
-        $("#sendModal").unbind('click').on("click", function () {
-            request = {
-                description: $("#description").val(),
-                project_id: id,
-            };
-            $.ajax({
-                url: "/applications/apply",
-                method: "POST",
-                data: request,
-                success: function (response) {
-                    $("#modal").addClass("hidden");
-                    $("#overlay").addClass("hidden");
-                    Swal.fire(
-                        "Application Sent!",
-                        "Application sent successfully!",
-                        "success"
-                    );
-                    $(`button[data-id=${id}]`).prop("disabled", true);
-                    applicantCount = $(`button[data-id=${id}]`)
-                        .next()
-                        .children(".applicantCount");
-                    applicantCount.text(parseInt(applicantCount.text()) + 1);
-                    $("#description").val("");
-                },
-                error: function (xhr) {
-                    let errors = "";
-                    $.each(xhr.responseJSON.errors, function (key, item) {
-                        errors +=
-                            "<span class='text-red-500'>" + item + "</span>";
-                    });
-                    $("#errors").html(errors);
-                    setTimeout(() => {
-                        $("#errors").html('');
-                    }, 2000);
-                    $("#description").val("");
-                },
+        $("#sendModal")
+            .unbind("click")
+            .on("click", function () {
+                request = {
+                    description: $("#description").val(),
+                    project_id: id,
+                };
+                $.ajax({
+                    url: "/applications/apply",
+                    method: "POST",
+                    data: request,
+                    success: function (response) {
+                        $("#modal").addClass("hidden");
+                        $("#overlay").addClass("hidden");
+                        Swal.fire(
+                            "Application Sent!",
+                            "Application sent successfully!",
+                            "success"
+                        );
+                        $(`button[data-id=${id}]`).prop("disabled", true);
+                        applicantCount = $(`button[data-id=${id}]`)
+                            .next()
+                            .children(".applicantCount");
+                        applicantCount.text(
+                            parseInt(applicantCount.text()) + 1
+                        );
+                        $("#description").val("");
+                    },
+                    error: function (xhr) {
+                        let errors = "";
+                        $.each(xhr.responseJSON.errors, function (key, item) {
+                            errors +=
+                                "<span class='text-red-500'>" +
+                                item +
+                                "</span>";
+                        });
+                        $("#errors").html(errors);
+                        setTimeout(() => {
+                            $("#errors").html("");
+                        }, 2000);
+                        $("#description").val("");
+                    },
+                });
             });
-        });
     });
 
     $("#closeModal, #overlay").on("click", function () {
@@ -149,21 +154,62 @@ $(document).ajaxStop(function () {
         $(this).find(".buttonWrapper").removeClass("flex").addClass("hidden");
     });
 
-    $('.cancelButton').unbind('click').on("click", function(e) {
-        e.preventDefault();
-        let form = $(this).parents('form');
-        Swal.fire({
-            title: 'Are you sure?',
-            text: "You won't be able to revert this!",
-            icon: 'warning',
-            showCancelButton: true,
-            confirmButtonColor: '#3085d6',
-            cancelButtonColor: '#d33',
-            confirmButtonText: 'Yes, cancel it!'
-          }).then((result) => {
-            if (result.isConfirmed) {
-              form.submit();
+    $(".cancelButton")
+        .unbind("click")
+        .on("click", function (e) {
+            e.preventDefault();
+            let form = $(this).parents("form");
+            Swal.fire({
+                title: "Are you sure?",
+                text: "You won't be able to revert this!",
+                icon: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#3085d6",
+                cancelButtonColor: "#d33",
+                confirmButtonText: "Yes, cancel it!",
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    form.submit();
+                }
+            });
+        });
+
+    $(".deleteButton")
+        .unbind("click")
+        .on("click", function (e) {
+            e.preventDefault();
+            let form = $(this).parents("form");
+            Swal.fire({
+                title: "Are you sure?",
+                text: "You won't be able to revert this!",
+                icon: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#3085d6",
+                cancelButtonColor: "#d33",
+                confirmButtonText: "Yes, delete it!",
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    form.submit();
+                }
+            });
+        });
+    $(".approveButton").unbind("click").on("click", function (e) {
+        id = $(this).data('id');
+        button = $(this);
+        application = $(this).parent().parent().parent();
+        $.ajax({
+            url: `/applications/${id}/accept`,
+            method: 'POST',
+            success: function(response) {
+                Swal.fire({
+                    icon: 'success',
+                    title: 'You have accepted an applicant!',
+                    showConfirmButton: false,
+                    timer: 1500
+                  })
+                button.prop('disabled', true);
+                application.addClass('accepted-bg');
             }
-          })
+        });
     });
 });
