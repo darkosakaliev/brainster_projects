@@ -3,6 +3,11 @@
         @if (auth()->user()->is_complete == 0)
             <x-incomplete />
         @else
+            @if (Session::get('message'))
+                <div class="max-w-4xl mx-auto sm:px-6 lg:px-8 py-4 custom-bg-green text-center text-white rounded-md mb-4">
+                    <p>{{ Session::get('message') }}</p>
+                </div>
+            @endif
             <div class="ml-12">
                 <p class="font-semibold mb-4">Have a new idea to make the world better?</p>
                 <div class="flex">
@@ -39,31 +44,43 @@
                             <div class="flex basis-4/6 flex-col px-6 py-4 justify-start items-start relative">
                                 <p class="font-semibold mb-2">{{ $project->name }}</p>
                                 <p class="show-read-more text-justify text-sm leading-5">{{ $project->description }}</p>
-                                <div
+                                @if($project->is_assembled == 0)
+                                <a href="{{ route('projects.applicants', $project->id) }}"
                                     class="flex flex-col justify-center items-center custom-bg-green px-2 py-3 rounded-full absolute -top-8 right-8">
                                     <span
                                         class="text-white text-2xl font-semibold">{{ $project->applicants->count() }}</span>
                                     <span class="text-[0.60rem] text-white">Applicants</span>
+                                </a>
+                                @else
+                                <div class="flex flex-col justify-center items-center custom-bg-green px-2 py-3 rounded-full absolute -top-8 right-8">
+                                    <span
+                                        class="text-white text-2xl font-semibold">{{ $project->applicants->count() }}</span>
+                                    <span class="text-[0.60rem] text-white">Applicants</span>
                                 </div>
+                                @endif
                             </div>
                         </div>
+                        @if($project->is_assembled == 0)
                         <div class="buttonWrapper hidden pl-4 flex-col space-y-2 absolute -right-12 top-20">
-                            <form action="{{ route('projects.edit', $project->id) }}"
-                                method="GET">
+                            <form action="{{ route('projects.edit', $project->id) }}" method="GET">
                                 @csrf
                                 <button type="submit" class="w-10 h-10">
                                     <img src="{{ asset('ikons/8.png') }}" alt="">
                                 </button>
                             </form>
-                            <form action="{{ route('projects.destroy', $project->id) }}"
-                                method="POST">
+                            <form action="{{ route('projects.destroy', $project->id) }}" method="POST">
                                 @csrf
                                 @method('DELETE')
-                                <button type="submit" class="w-10 h-10">
+                                <button type="submit" class="w-10 h-10 deleteButton">
                                     <img src="{{ asset('ikons/7.png') }}" alt="">
                                 </button>
                             </form>
                         </div>
+                        @else
+                        <div class="absolute right-12 -bottom-5">
+                            <img class="w-10 h-10" src="{{ asset('ikons/badge.png') }}" alt="">
+                        </div>
+                        @endif
                     </div>
                 @endforeach
             </div>

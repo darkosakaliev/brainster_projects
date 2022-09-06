@@ -45,9 +45,20 @@ class UserSeeder extends Seeder
             'surname' => 'Doe',
             'email' => 'markdoe@example.com',
             'bio' => 'Mark Doe Lorem Ipsum Dolor Sit Amet.',
-            'profile_image' => '1661625293-JaneDoe.jpg',
+            'profile_image' => '1661612533-MarkDoe.png',
             'password' => Hash::make('Mark1234'),
-            'academy_id' => 5,
+            'academy_id' => 3,
+            'is_complete' => 1
+        ]);
+
+        User::create([
+            'name' => 'Philip',
+            'surname' => 'Doe',
+            'email' => 'philipdoe@example.com',
+            'bio' => 'Philip Doe Lorem Ipsum Dolor Sit Amet.',
+            'profile_image' => '1661612534-PhilipDoe.png',
+            'password' => Hash::make('Philip1234'),
+            'academy_id' => 4,
             'is_complete' => 1
         ]);
 

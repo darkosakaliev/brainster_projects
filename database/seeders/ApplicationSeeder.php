@@ -17,21 +17,21 @@ class ApplicationSeeder extends Seeder
     public function run()
     {
         Application::insert([
-            'description' => 'Mark Doe Lorem ipsum dolor',
-            'user_id' => 3,
-            'project_id' => 1
-        ]);
-
-        Application::insert([
-            'description' => 'Jane Doe Lorem ipsum dolor',
+            'description' => 'Some message from this user about why they want to join in the realization of your genius idea.',
             'user_id' => 2,
             'project_id' => 1
         ]);
 
         Application::insert([
-            'description' => 'John Doe Lorem ipsum dolor',
-            'user_id' => 1,
-            'project_id' => 7
+            'description' => 'Some message from this user about why they want to join in the realization of your genius idea.',
+            'user_id' => 3,
+            'project_id' => 1
+        ]);
+
+        Application::insert([
+            'description' => 'Some message from this user about why they want to join in the realization of your genius idea.',
+            'user_id' => 4,
+            'project_id' => 1
         ]);
     }
 }
