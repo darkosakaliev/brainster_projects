@@ -38,4 +38,17 @@ class ApplicationController extends Controller
 
         return redirect()->route('applications')->with(['message' => 'Application successfully canceled!']);
     }
+
+    public function accept($id) {
+        $application = Application::find($id);
+
+        $application->is_accepted = 1;
+
+        if($application->save()) {
+            return response()->json([
+                'status' => 200,
+                'success' => true,
+            ]);
+        };
+    }
 }

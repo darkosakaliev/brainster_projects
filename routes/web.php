@@ -45,9 +45,17 @@ Route::middleware(['auth'])->group(function () {
 
         Route::delete('projects/{id}', [ProjectController::class, 'destroy'])->name('projects.destroy');
 
+        Route::post('/projects/{id}/assemble', [ProjectController::class, 'assemble'])->name('projects.assemble');
+
         Route::post('/applications/apply', [ApplicationController::class, 'apply'])->name('applications.apply');
 
         Route::delete('/applications/{id}/cancel', [ApplicationController::class, 'cancel'])->name('applications.cancel');
+
+        Route::post('/applications/{id}/accept', [ApplicationController::class, 'accept'])->name('applications.accept');
+
+        Route::get('projects/{id}/applicants', [ProjectController::class, 'applicants'])->name('projects.applicants');
+
+        Route::get('/profile/{id}', [UserController::class, 'show'])->name('users.show');
 
     });
 });
