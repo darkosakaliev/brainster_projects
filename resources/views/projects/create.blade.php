@@ -1,7 +1,7 @@
 <x-app-layout>
     <form action="{{ route('projects.store') }}" method="POST">
         @csrf
-        <div class="flex flex-col md:flex-row p-12 overflow-auto bg-img custom-lightgray">
+        <div class="flex flex-col lg:flex-row p-12 overflow-auto bg-img custom-lightgray">
             <div class="basis-2/4">
                 <p class="font-semibold text-2xl">New Project</p>
                 <div class="flex flex-col mt-12">

@@ -3,7 +3,7 @@
         @if (auth()->user()->is_complete == 0)
             <x-incomplete />
         @else
-            <div class="flex ml-12">
+            <div class="flex ml-12 flex-col md:flex-row">
                 <div class="flex flex-col">
                     <p class="text-2xl font-semibold mb-4">{{ $project->name }} - Applicants</p>
                     <div class="flex items-center">
