@@ -1,7 +1,7 @@
 @foreach ($projects as $project)
     <div class="bg-white shadow-sm rounded-2xl mt-20">
-        <div class="flex justify-between rounded-2xl bg-white border-b text-center border-gray-200 relative">
-            <div class="flex flex-col justify-center items-center basis-2/6">
+        <div class="flex flex-col md:flex-row rounded-2xl bg-white border-b text-center border-gray-200 relative">
+            <div class="flex flex-col justify-center items-center basis-full lg:basis-2/6">
                 <div class="absolute -top-14 border-8 border-white rounded-full">
                     <img class="rounded-full w-24 h-24 object-cover"
                         src="{{ asset('profile-images/' . $project->user->profile_image) }}" alt="">
@@ -9,7 +9,7 @@
                 <p class="text-md font-semibold mt-16">{{ $project->user->name }}
                     {{ $project->user->surname }}</p>
                 <p class="text-sm custom-orange">I'm a {{ $project->user->academy->profession }}</p>
-                <p class="text-xs font-semibold mt-24">I'm looking for</p>
+                <p class="text-xs font-semibold mt-6 md:mt-24">I'm looking for</p>
                 <div class="flex justify-center mt-4 overflow-hidden items-center">
                     @foreach ($project->academies as $academy)
                         <div class="rounded-t-full w-20 custom-bg-green p-2">
@@ -19,7 +19,7 @@
                     @endforeach
                 </div>
             </div>
-            <div class="flex basis-4/6 flex-col px-6 py-4 justify-start items-start relative">
+            <div class="flex basis-full lg:basis-4/6 mt-12 lg:mt-0 flex-col px-6 py-4 justify-start items-start relative">
                 <p class="font-semibold mb-2">{{ $project->name }}</p>
                 <p class="text-justify text-sm leading-5 show-read-more">{{ $project->description }}</p>
                     <button data-id="{{ $project->id }}"

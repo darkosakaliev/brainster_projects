@@ -5,9 +5,9 @@
                 <x-incomplete />
             </div>
         @endif
-        <div class="flex flex-row">
-            <div class="basis-1/2">
-                <div class="flex space-x-20">
+        <div class="flex flex-col xl:flex-row">
+            <div class="basis-full xl:basis-1/2">
+                <div class="flex flex-col md:flex-row md:space-x-20">
                     <img class="w-72 h-72 rounded-full border-8 border-white object-cover"
                         src="{{ asset('profile-images/' . $user->profile_image) }}" alt="">
                     <div class="flex flex-col justify-center">
@@ -17,7 +17,6 @@
                         <span class="text-xl font-semibold mb-8">{{ $user->email }}</span>
                     </div>
                 </div>
-                <a href="{{ url()->previous() }}" class="mt-44 inline-block custom-bg-green px-24 py-3 text-white rounded-lg">Back</a>
             </div>
             <div class="basis-1/2">
                 <div class="flex flex-col mb-4 mt-12 justify-center">
@@ -25,11 +24,11 @@
                     <p class="mb-6 custom-gray show-read-more">{{ $user->bio }}</p>
                     <span class="text-2xl font-semibold">Skills:</span>
                     <div class="w-full mt-4">
-                        <div class="flex h-52 overflow-y-scroll flex-wrap mb-6">
+                        <div class="flex overflow-y-scroll flex-wrap">
                             @foreach ($user->skills as $skill)
                                 <div>
                                     <div
-                                        class="w-24 h-24 mt-1 mr-1 text-center text-xs grid place-items-center font-semibold bg-white rounded-xl">
+                                        class="w-28 h-28 mt-1 mr-1 text-center text-xs grid place-items-center font-semibold bg-white rounded-xl">
                                         {{ $skill->name }}
                                     </div>
                                 </div>
@@ -39,5 +38,6 @@
                 </div>
             </div>
         </div>
+        <a href="{{ url()->previous() }}" class="mt-12 xl:mt-44 inline-block custom-bg-green px-24 py-3 text-white rounded-lg">Back</a>
     </div>
 </x-app-layout>

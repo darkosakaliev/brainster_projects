@@ -1,12 +1,12 @@
 <x-guest-layout>
     <div class="login-bg bg-img-guest flex-wrap md:flex justify-center items-center px-20">
         <div class="w-full md:w-8/12 self-start">
-            <div class="w-full h-80">
+            <div class="w-full h-auto md:h-80">
                 <x-big-logo />
             </div>
-            <span class="ml-8 text-3xl font-semibold">Propel your ideas to life!</span>
+            <span class="md:ml-8 text-3xl font-semibold">Propel your ideas to life!</span>
         </div>
-        <div class="w-full md:w-3/12 mt-20">
+        <div class="w-full md:w-3/12 mt-10 md:mt-20">
             <form class="w-50" method="POST" action="{{ route('login') }}">
                 @csrf
                 <span class="text-3xl font-extrabold">Login</span>

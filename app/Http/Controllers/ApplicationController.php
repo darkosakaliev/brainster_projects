@@ -2,8 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\UserApplicated;
 use App\Models\Application;
+use App\Models\Project;
+use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 
 class ApplicationController extends Controller
 {
@@ -24,6 +28,10 @@ class ApplicationController extends Controller
             'user_id' => auth()->user()->id,
             'project_id' => $request->project_id
         ]);
+
+        $project = Project::find($request->project_id);
+
+        Mail::to($project->user->email)->queue(new UserApplicated($request->project_id, auth()->user()->id));
 
         return response()->json([
             'status' => 200,
