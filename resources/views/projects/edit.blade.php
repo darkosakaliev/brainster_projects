@@ -2,11 +2,11 @@
     <form action="{{ route('projects.update', $project->id) }}" method="POST">
         @csrf
         @method('PUT')
-        <div class="flex flex-col md:flex-row p-12 overflow-auto bg-img custom-lightgray">
+        <div class="flex flex-col lg:flex-row p-12 overflow-auto bg-img custom-lightgray">
             <div class="basis-2/4">
                 <p class="font-semibold text-2xl">Edit Project</p>
                 <div class="flex flex-col mt-12">
-                    <div class="md:w-6/12">
+                    <div class="lg:w-6/12">
                         <x-input id="name" class="block w-full p-0 focus:outline-none" type="name" name="name"
                             autofocus placeholder="Name of Project" value="{{ $project->name }}" />
                         @error('name')
@@ -27,7 +27,7 @@
                 </div>
             </div>
             <div class="basis-2/4 mt-12 md:mt-0">
-                <p class="font-semibold text-2xl">What I need</p>
+                <p class="font-semibold text-2xl mt-12 lg:mt-0">What I need</p>
                 <div class="flex mt-12 flex-wrap justify-center items-center">
                     @foreach ($academies as $academy)
                         <input class="hidden" type="checkbox" name="academies[]"

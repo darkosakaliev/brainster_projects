@@ -2,17 +2,17 @@
     <form action="{{ route('profile.update') }}" method="POST" enctype="multipart/form-data">
         @csrf
         @method('PUT')
-        <div class="p-12 overflow-auto custom-lightgray bg-img">
+        <div class="py-12 overflow-auto custom-lightgray bg-img">
             @if (auth()->user()->is_complete == 0)
             <div class="mb-6">
                 <x-incomplete />
             </div>
             @endif
-            <div class="flex flex-row">
+            <div class="flex lg:flex-row flex-col px-6 xl:px-0 max-w-7xl mx-auto">
                 <div class="basis-1/2">
                     <span class="text-2xl font-semibold">My Profile</span>
-                    <div class="flex flex-col md:flex-row flex-wrap p-8">
-                        <div class="w-6/12">
+                    <div class="flex flex-col lg:flex-row flex-wrap p-8">
+                        <div class="basis-1/2 ">
                             <div class="grid place-items-center">
                                 <div class="grid place-items-center border-8 border-white rounded-full">
                                     <img class=" w-24 h-24 rounded-full object-cover"
@@ -28,7 +28,7 @@
                                 <div class="text-red-600 text-xs mt-1 text-center">{{ $message }}</div>
                             @enderror
                         </div>
-                        <div class="">
+                        <div class="basis-1/2">
                             <div>
                                 <x-input id="name" class="block mt-4 w-full p-0 focus:outline-none" type="name"
                                     name="name" :value="auth()->user()->name" autofocus placeholder="Name" />
@@ -101,7 +101,7 @@
                             <div class="text-red-600 text-xs mt-1">You must choose an academy.</div>
                         @enderror
                     </div>
-                    <div class="flex justify-end">
+                    <div class="flex justify-end mt-12">
                         <button class="custom-bg-green py-3 px-24 rounded-lg text-white" type="submit">EDIT</button>
                     </div>
                 </div>
